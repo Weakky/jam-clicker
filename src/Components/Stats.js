@@ -17,8 +17,10 @@ function Stats(props) {
       }}
     >
       <span>Bois: {prettifyNumber(BigNumber(props.nanites).div(100))}</span>
-      <span>Bois généré par seconde: </span>{" "}
-      {prettifyNumber(BigNumber(props.nanitesPerSecond).div(10))}
+      <span>
+        Bois généré par seconde:{" "}
+        {prettifyNumber(BigNumber(props.nanitesPerSecond).div(10))}
+      </span>
     </div>
   );
 }
