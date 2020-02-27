@@ -44,7 +44,6 @@ body {
 }
 
 #banner {
-  top: 10%;
   width: 100%;
   background-color: $transBG;
   text-align: center;
@@ -53,49 +52,38 @@ body {
 #bigNanite {
   width: $naniteSize;
   height: $naniteSize;
-  top: calc(40% - #{$naniteOffset});
-  left: calc(50% - #{$naniteOffset});
   background-color: $transBG;
   border: 1px solid $themeGreen;
   padding: 0.4em;
   cursor: pointer;
-  margin-top: 100px;
-  justify-content: center;
+  margin-top: 50px;
 
   &:hover {
     width: $engorgedNaniteSize;
     height: $engorgedNaniteSize;
-    top: calc(40% - #{$engorgedOffset});
-    left: calc(50% - #{$engorgedOffset});
-    color: $highlightGreen;
-    border-color: $highlightGreen;
   }
 
   &:active {
     width: $naniteSize;
     height: $naniteSize;
-    top: calc(40% - #{$naniteOffset});
-    left: calc(50% - #{$naniteOffset});
-    color: $themeGreen;
-    border-color: $themeGreen;
   }
 
-  @media (max-width: 768px) {
-    &,
-    &:hover {
-      width: $naniteSize;
-      height: $naniteSize;
-      top: calc(60% - #{$naniteOffset});
-      left: calc(50% - #{$naniteOffset});
-    }
+  // @media (max-width: 768px) {
+  //   &,
+  //   &:hover {
+  //     width: $naniteSize;
+  //     height: $naniteSize;
+  //     top: calc(60% - #{$naniteOffset});
+  //     left: calc(50% - #{$naniteOffset});
+  //   }
 
-    &:active {
-      width: $engorgedNaniteSize;
-      height: $engorgedNaniteSize;
-      top: calc(60% - #{$engorgedOffset});
-      left: calc(50% - #{$engorgedOffset});
-    }
-  }
+  //   &:active {
+  //     width: $engorgedNaniteSize;
+  //     height: $engorgedNaniteSize;
+  //     top: calc(60% - #{$engorgedOffset});
+  //     left: calc(50% - #{$engorgedOffset});
+  //   }
+  // }
 }
 
 #centerPanel {
@@ -147,21 +135,16 @@ body {
 }
 
 .building {
-  position: relative;
-  border: 1px solid $themeGreen;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+  align-items: space-between;
   padding: 1em;
+  border: 1px solid $themeGreen;
 
   &:hover {
     color: $highlightGreen;
     border-color: $highlightGreen;
   }
-}
-
-.overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  background-color: rgba(255, 255, 255, 0.5);
 }

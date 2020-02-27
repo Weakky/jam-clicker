@@ -18,7 +18,6 @@ import {
 } from "../Actions/gameActions";
 import { prettifyNumber, updateTitleTag } from "../Utilities/utilities";
 
-
 class Game extends Component {
   constructor(props) {
     super(props);
@@ -66,40 +65,93 @@ class Game extends Component {
     };
 
     return (
-        <div style = {{ display: 'flex', flex: 1, flexDirection: 'column', }}>
+      <div
+        style={{
+          display: "flex",
+          flex: 1,
+          flexDirection: "column",
+          backgroundColor: "red",
+          height: "100vh",
+          width: "100vw"
+        }}
+      >
+        <div style={{ backgroundColor: "green", flex: 0.1 }}>
           <Stats
-              nanites={this.props.naniteHundredths}
-              nanitesPerSecond={this.props.nanitesPerSecond}
-              generatedNanites={this.props.nanitesGenerated}
-              handGeneratedNanites={this.props.nanitesHandGenerated}
-              buildingsOwned={this.props.buildingsOwned}/>
-          <div style={{ flex: 0.6, backgroundColor: "transparent", display: "flex", flexDirection: "row"}}>
-            <div style={{ flex: 0.5,  display: 'flex', 'flex-direction': 'column', 'align-items': 'center' }}>
-              <div id="banner">
-                <h2>{this.displayNaniteValue()} stère de bois</h2>
-                <small>
-                  {prettifyNumber(BigNumber(this.props.nanitesPerSecond).div(10))}{" "}
-                  per second
-                </small>
-              </div>
-              <div id="bigNanite" onClick={() => this.props.addNanites(100)}>
-                <h1 className="text-center">Imagine an image of a nanite here</h1>
-              </div>
+            nanites={this.props.naniteHundredths}
+            nanitesPerSecond={this.props.nanitesPerSecond}
+            generatedNanites={this.props.nanitesGenerated}
+            handGeneratedNanites={this.props.nanitesHandGenerated}
+            buildingsOwned={this.props.buildingsOwned}
+          />
+        </div>
+        <div
+          style={{
+            backgroundColor: "yellow",
+            display: "flex",
+            flexDirection: "row",
+            flex: 0.8
+          }}
+        >
+          <div
+            style={{
+              display: "flex",
+              flex: 1,
+              flexDirection: "column",
+              backgroundColor: "blue",
+              alignItems: "center"
+            }}
+          >
+            <div id="banner">
+              <h2>{this.displayNaniteValue()} stères de bois</h2>
+              <small>
+                {prettifyNumber(BigNumber(this.props.nanitesPerSecond).div(10))}{" "}
+                par seconde
+              </small>
             </div>
-            <div style={{ flex: 0.5 }}>
+
+            <div id="bigNanite" onClick={() => this.props.addNanites(100)}>
+              <h1 className="text-center">Imagine an image of a nanite here</h1>
+            </div>
+          </div>
+
+          <div
+            style={{
+              backgroundColor: "orange",
+              display: "flex",
+              flex: "auto",
+              flexDirection: "column"
+            }}
+          >
+            <div style={{ flex: 1 }}>
               <h2 className="text-center">Buildings</h2>
               <div
-                  id="buildingContainer"
-                  onMouseLeave={() => this.props.hideTooltip()}>
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  backgroundColor: "black"
+                }}
+                onMouseLeave={() => this.props.hideTooltip()}
+              >
                 {renderBuildings()}
               </div>
             </div>
+            {/* <div style={{ flex: 1 }}>
+              <h2 className="text-center">Events</h2>
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  backgroundColor: "black"
+                }}
+                onMouseLeave={() => this.props.hideTooltip()}
+              >
+                {renderBuildings()}
+              </div>
+            </div> */}
           </div>
-          <div style={{ flex: 0.2, backgroundColor: "yellow"}}>
-            <span>toto</span>
-          </div>
-          {renderTooltip()}
         </div>
+        <div style={{ backgroundColor: "purple", flex: 0.1 }} />
+      </div>
     );
   }
 }

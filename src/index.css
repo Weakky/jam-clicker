@@ -26,7 +26,6 @@ body {
       width: 100%; } }
 
 #banner {
-  top: 10%;
   width: 100%;
   background-color: rgba(0, 0, 0, 0.7);
   text-align: center; }
@@ -34,39 +33,17 @@ body {
 #bigNanite {
   width: 250px;
   height: 250px;
-  top: calc(40% - 125px);
-  left: calc(50% - 125px);
   background-color: rgba(0, 0, 0, 0.7);
   border: 1px solid #080;
   padding: 0.4em;
   cursor: pointer;
-  margin-top: 100px;
-  justify-content: center; }
+  margin-top: 50px; }
   #bigNanite:hover {
     width: 275px;
-    height: 275px;
-    top: calc(40% - 137.5px);
-    left: calc(50% - 137.5px);
-    color: #0c0;
-    border-color: #0c0; }
+    height: 275px; }
   #bigNanite:active {
     width: 250px;
-    height: 250px;
-    top: calc(40% - 125px);
-    left: calc(50% - 125px);
-    color: #080;
-    border-color: #080; }
-  @media (max-width: 768px) {
-    #bigNanite, #bigNanite:hover {
-      width: 250px;
-      height: 250px;
-      top: calc(60% - 125px);
-      left: calc(50% - 125px); }
-    #bigNanite:active {
-      width: 275px;
-      height: 275px;
-      top: calc(60% - 137.5px);
-      left: calc(50% - 137.5px); } }
+    height: 250px; }
 
 #centerPanel {
   display: flex;
@@ -106,17 +83,13 @@ body {
     font-size: 8px; }
 
 .building {
-  position: relative;
-  border: 1px solid #080;
-  padding: 1em; }
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+  align-items: space-between;
+  padding: 1em;
+  border: 1px solid #080; }
   .building:hover {
     color: #0c0;
     border-color: #0c0; }
-
-.overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  background-color: rgba(255, 255, 255, 0.5); }
