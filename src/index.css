@@ -1,13 +1,121 @@
+@import url("https://fonts.googleapis.com/css?family=Orbitron");
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+  padding: 0;
+  font-family: sans-serif;
+  background-color: #000;
+  color: #080;
+  user-select: none; }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
+#Game {
+  height: 100vh;
+  width: 100vw;
+  position: relative; }
+
+#leftPanel {
+  height: 100%;
+  width: 16.66667%;
+  float: left;
+  position: relative;
+  background-size: cover; }
+  @media (max-width: 768px) {
+    #leftPanel {
+      width: 100%; } }
+
+#banner {
+  top: 10%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  text-align: center; }
+
+#bigNanite {
+  width: 250px;
+  height: 250px;
+  top: calc(40% - 125px);
+  left: calc(50% - 125px);
+  background-color: rgba(0, 0, 0, 0.7);
+  border: 1px solid #080;
+  padding: 0.4em;
+  cursor: pointer;
+  margin-top: 100px;
+  justify-content: center; }
+  #bigNanite:hover {
+    width: 275px;
+    height: 275px;
+    top: calc(40% - 137.5px);
+    left: calc(50% - 137.5px);
+    color: #0c0;
+    border-color: #0c0; }
+  #bigNanite:active {
+    width: 250px;
+    height: 250px;
+    top: calc(40% - 125px);
+    left: calc(50% - 125px);
+    color: #080;
+    border-color: #080; }
+  @media (max-width: 768px) {
+    #bigNanite, #bigNanite:hover {
+      width: 250px;
+      height: 250px;
+      top: calc(60% - 125px);
+      left: calc(50% - 125px); }
+    #bigNanite:active {
+      width: 275px;
+      height: 275px;
+      top: calc(60% - 137.5px);
+      left: calc(50% - 137.5px); } }
+
+#centerPanel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  width: 58.33333%;
+  float: left;
+  padding: 1em; }
+  @media (max-width: 768px) {
+    #centerPanel {
+      height: auto;
+      width: 100%; } }
+
+#rightPanel {
+  height: 100%;
+  width: 25%;
+  float: left;
+  padding: 1em;
+  overflow-x: visible;
+  overflow-y: auto; }
+  @media (max-width: 768px) {
+    #rightPanel {
+      height: auto;
+      width: 100%; } }
+
+#tooltip {
+  width: 300px;
+  position: absolute;
+  right: 25%;
+  border: 1px solid #999;
+  padding: 0.5em;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #0c0; }
+  #tooltip .description {
+    font-size: 8px; }
+
+#buildingContainer {
+  padding-bottom: 200px; }
+
+.building {
+  position: relative;
+  border: 1px solid #080;
+  padding: 1em; }
+  .building:hover {
+    color: #0c0;
+    border-color: #0c0; }
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(255, 255, 255, 0.5); }
