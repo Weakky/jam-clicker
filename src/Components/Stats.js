@@ -16,22 +16,9 @@ function Stats(props) {
         color: "black"
       }}
     >
-      <span>
-        Current nanites: {prettifyNumber(BigNumber(props.nanites).div(100))}
-      </span>
-      <span>
-        Nanites generated per second:{" "}
-        {prettifyNumber(BigNumber(props.nanitesPerSecond).div(10))}
-      </span>
-      <span>
-        Total nanites generated:{" "}
-        {prettifyNumber(BigNumber(props.generatedNanites).div(100))}
-      </span>
-      <span>
-        Hand generated nanites:{" "}
-        {prettifyNumber(BigNumber(props.handGeneratedNanites).div(100))}
-      </span>
-      <span>Buildings owned: {props.buildingsOwned}</span>
+      <span>Bois: {prettifyNumber(BigNumber(props.nanites).div(100))}</span>
+      <span>Bois généré par seconde: </span>{" "}
+      {prettifyNumber(BigNumber(props.nanitesPerSecond).div(10))}
     </div>
   );
 }

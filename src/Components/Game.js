@@ -113,7 +113,6 @@ class Game extends Component {
               <h1 className="text-center">Imagine an image of a nanite here</h1>
             </div>
           </div>
-
           <div
             style={{
               backgroundColor: "orange",
@@ -183,7 +182,7 @@ const mapStateToProps = state => {
     nanitesGenerated: state.nanitesGenerated,
     nanitesHandGenerated: state.nanitesHandGenerated,
     buildingsOwned: state.buildingsOwned,
-    buildings: state.buildings,
+    buildings: state.currentEra.buildings,
     tooltipActive: state.tooltipActive,
     tooltipTop: state.tooltipTop,
     tooltipBuilding: state.tooltipBuilding
