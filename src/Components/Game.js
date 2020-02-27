@@ -18,7 +18,6 @@ import {
 } from "../Actions/gameActions";
 import { prettifyNumber, updateTitleTag } from "../Utilities/utilities";
 
-import greenNebula from "../Images/greenNebula.jpg";
 
 class Game extends Component {
   constructor(props) {
@@ -67,43 +66,40 @@ class Game extends Component {
     };
 
     return (
-      <div id="Game">
-        <div id="leftPanel">
-          <h2 className="text-center">Statistics</h2>
+        <div style = {{ display: 'flex', flex: 1, flexDirection: 'column', }}>
           <Stats
-            nanites={this.props.naniteHundredths}
-            nanitesPerSecond={this.props.nanitesPerSecond}
-            generatedNanites={this.props.nanitesGenerated}
-            handGeneratedNanites={this.props.nanitesHandGenerated}
-            buildingsOwned={this.props.buildingsOwned}
-          />
-        </div>
-        <div
-          id="centerPanel"
-          style={{ backgroundImage: "url(" + greenNebula + ")" }}
-        >
-          <div id="banner">
-            <h2>{this.displayNaniteValue()} stère de bois</h2>
-            <small>
-              {prettifyNumber(BigNumber(this.props.nanitesPerSecond).div(10))}{" "}
-              per second
-            </small>
+              nanites={this.props.naniteHundredths}
+              nanitesPerSecond={this.props.nanitesPerSecond}
+              generatedNanites={this.props.nanitesGenerated}
+              handGeneratedNanites={this.props.nanitesHandGenerated}
+              buildingsOwned={this.props.buildingsOwned}/>
+          <div style={{ flex: 0.6, backgroundColor: "transparent", display: "flex", flexDirection: "row"}}>
+            <div style={{ flex: 0.5,  display: 'flex', 'flex-direction': 'column', 'align-items': 'center' }}>
+              <div id="banner">
+                <h2>{this.displayNaniteValue()} stère de bois</h2>
+                <small>
+                  {prettifyNumber(BigNumber(this.props.nanitesPerSecond).div(10))}{" "}
+                  per second
+                </small>
+              </div>
+              <div id="bigNanite" onClick={() => this.props.addNanites(100)}>
+                <h1 className="text-center">Imagine an image of a nanite here</h1>
+              </div>
+            </div>
+            <div style={{ flex: 0.5 }}>
+              <h2 className="text-center">Buildings</h2>
+              <div
+                  id="buildingContainer"
+                  onMouseLeave={() => this.props.hideTooltip()}>
+                {renderBuildings()}
+              </div>
+            </div>
           </div>
-          <div id="bigNanite" onClick={() => this.props.addNanites(100)}>
-            <h1 className="text-center">Imagine an image of a nanite here</h1>
+          <div style={{ flex: 0.2, backgroundColor: "yellow"}}>
+            <span>toto</span>
           </div>
+          {renderTooltip()}
         </div>
-        <div id="rightPanel">
-          <h2 className="text-center">Buildings</h2>
-          <div
-            id="buildingContainer"
-            onMouseLeave={() => this.props.hideTooltip()}
-          >
-            {renderBuildings()}
-          </div>
-        </div>
-        {renderTooltip()}
-      </div>
     );
   }
 }

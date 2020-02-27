@@ -20,16 +20,20 @@ body {
   user-select: none;
 }
 
+#App {
+  display: flex;
+  flex: 1;
+}
+
 // style={{height: '100vh', width: '100vw'}}
 #Game {
-  height: 100vh;
-  width: 100vw;
-  position: relative;
+  display: flex;
+  flex-direction: column;
 }
 
 #leftPanel {
   height: 100%;
-  width: $leftWidth;
+  width: 2 / 12 * 100%;
   float: left;
   position: relative;
   background-size: cover;
@@ -102,6 +106,7 @@ body {
   width: $centerWidth;
   float: left;
   padding: 1em;
+  background: linear-gradient(#e66465, #9198e5);
 
   @media (max-width: 768px) {
     height: auto;
@@ -138,7 +143,7 @@ body {
 }
 
 #buildingContainer {
-  padding-bottom: 200px;
+  // padding-bottom: 200px;
 }
 
 .building {
