@@ -20,7 +20,10 @@ const Building: React.FC<Props> = props => {
       );
     });
 
-  if ([5, 6, 7].includes(props.building.id) && props.state.currentEra.name === 'Age de Pierre') {
+  if (
+    [5, 6, 7].includes(props.building.id) &&
+    props.state.currentEra.name === "Age de Pierre"
+  ) {
     if (props.state.currentEra.upgrades.find(u => u.id === 4)!.owned === 0) {
       canBuy = false;
     }
@@ -40,9 +43,11 @@ const Building: React.FC<Props> = props => {
         props.moveTooltip(building.id, $event.pageY - 50 + "px")
       }
     >
-      <h5>{building.name}</h5>
-      <div>{building.owned}</div>
-      <div>{/* {prettifyNumber(building.priceOfNext)} */}</div>
+      <h5 style={{ textAlign: "center" }}>{building.name}</h5>
+      <div style={{ textAlign: "center" }}>{building.owned}</div>
+      {/* <div style={{ textAlign: "center" }}>
+        {prettifyNumber(building.priceOfNext)}
+      </div> */}
       {/* {overlay} */}
     </div>
   );

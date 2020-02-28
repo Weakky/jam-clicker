@@ -94,7 +94,8 @@ class Game extends Component<Props> {
           <Stats
             bois={this.props.Bois}
             pierre={this.props.Pierre}
-            nourriture={this.props.Nourriture}/>
+            nourriture={this.props.Nourriture}
+          />
         </div>
         <div
           style={{
@@ -108,9 +109,8 @@ class Game extends Component<Props> {
             style={{
               display: "inline-block",
               width: "50%",
-              background: 'linear-gradient(#37418a, #9198e5,#37418a)',
+              background: "linear-gradient(#37418a, #9198e5,#37418a)",
               verticalAlign: "middle",
-              fontSize: 0,
               height: "100%"
             }}
           >
@@ -124,7 +124,10 @@ class Game extends Component<Props> {
             <div
               id="bigNanite"
               style={{ margin: "50px auto 0" }}
-              onClick={() => this.props.addNanites(100)}>''</div>
+              onClick={() => this.props.addNanites(100)}
+            >
+              ''
+            </div>
           </div>
           <div
             style={{
@@ -152,7 +155,7 @@ class Game extends Component<Props> {
                 {renderTools()}
               </div>
             </div>
-            <div style={{ minHeight: "50%", fontSize: 0 }}>
+            <div style={{ minHeight: "50%" }}>
               <h2 className="text-center" style={{ marginTop: 0 }}>
                 Améliorations
               </h2>
