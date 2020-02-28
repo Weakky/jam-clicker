@@ -19,7 +19,10 @@ class Game extends Component {
         return prettifyNumber(wholeNanites, true);
     }
     render() {
-        const tooltipBuilding = this.props.buildings.find(b => b.id === this.props.tooltipBuilding);
+        let tooltipBuilding = this.props.buildings.find(b => b.id === this.props.tooltipBuilding);
+        if (!tooltipBuilding) {
+            tooltipBuilding = this.props.buildings[0];
+        }
         const renderTools = () => {
             return this.props.buildings
                 .filter(b => b.type === "tool")
@@ -48,7 +51,7 @@ class Game extends Component {
                 width: "100vw"
             } },
             React.createElement("div", { id: "upperPanel" },
-                React.createElement(Stats, { bois: this.props.Bois, pierre: this.props.Pierre, nourriture: this.props.Nourriture })),
+                React.createElement(Stats, { state: this.props.state })),
             React.createElement("div", { style: {
                     backgroundColor: "yellow",
                     display: "block",
@@ -87,6 +90,7 @@ class Game extends Component {
                                 backgroundColor: "black",
                                 overflowY: "scroll"
                             }, onMouseLeave: () => this.props.hideTooltip() }, renderTools())),
+                    renderTooltip(),
                     React.createElement("div", { style: { minHeight: "50%" } },
                         React.createElement("h2", { className: "text-center", style: { marginTop: 0 } }, "Am\u00E9liorations"),
                         React.createElement("div", { style: {

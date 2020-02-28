@@ -33,9 +33,13 @@ class Game extends Component<Props> {
   }
 
   render() {
-    const tooltipBuilding = this.props.buildings.find(
+    let tooltipBuilding = this.props.buildings.find(
       b => b.id === this.props.tooltipBuilding
-    )!;
+    );
+    if (!tooltipBuilding) {
+      tooltipBuilding = this.props.buildings[0];
+    }
+
     const renderTools = () => {
       return this.props.buildings
         .filter(b => b.type === "tool")
@@ -73,7 +77,7 @@ class Game extends Component<Props> {
         tt = (
           <Tooltip
             tooltipTop={this.props.tooltipTop}
-            tooltipBuilding={tooltipBuilding}
+            tooltipBuilding={tooltipBuilding!}
           />
         );
       }
@@ -91,11 +95,7 @@ class Game extends Component<Props> {
         }}
       >
         <div id="upperPanel">
-          <Stats
-            bois={this.props.Bois}
-            pierre={this.props.Pierre}
-            nourriture={this.props.Nourriture}
-          />
+          <Stats state={this.props.state} />
         </div>
         <div
           style={{
@@ -155,7 +155,7 @@ class Game extends Component<Props> {
                 {renderTools()}
               </div>
             </div>
-              {renderTooltip()}
+            {renderTooltip()}
             <div style={{ minHeight: "50%" }}>
               <h2 className="text-center" style={{ marginTop: 0 }}>
                 Améliorations

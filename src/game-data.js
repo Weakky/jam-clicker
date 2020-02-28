@@ -2,15 +2,19 @@ import BigNumber from "big-number";
 export const resourcesTypes = {
     Bois: {
         name: "Bois",
-        image: "<static_url>"
+        image: "Ressources/primary/wood.svg"
     },
     Pierre: {
         name: "Pierre",
-        image: "<static_url>"
+        image: "Ressources/primary/stone.svg"
     },
     Nourriture: {
         name: "Nourriture",
-        image: "<static_url>"
+        image: "Ressources/primary/food.svg"
+    },
+    Or: {
+        name: "Or",
+        image: "Ressources/primary/stone.svg"
     }
 };
 export const upgradesPerEras = {
@@ -307,6 +311,213 @@ export const upgradesPerEras = {
                     baseHundredthsPerTick: BigNumber(1),
                     baseUpgradeClick: BigNumber(0)
                 }
+            },
+            getNextEra: () => eras.IndustrialAge
+        }
+    ],
+    IndustrialAge: [
+        {
+            id: 1,
+            type: "event",
+            name: "Immeuble",
+            plural: "Immeubles",
+            description: "Outil pour couper du bois",
+            owned: 0,
+            // resourceType: "Bois",
+            info: {
+                Or: {
+                    basePrice: BigNumber(15),
+                    priceOfNext: BigNumber(15),
+                    baseHundredthsPerTick: BigNumber(1),
+                    baseUpgradeClick: BigNumber(0)
+                }
+            }
+        },
+        {
+            id: 2,
+            type: "event",
+            name: "Publicité",
+            plural: "Publicités",
+            description: "Nanites infect a humanoid host, overpowering will and creating new nanites",
+            owned: 0,
+            // resourceType: "Bois",
+            info: {
+                Or: {
+                    basePrice: BigNumber(15),
+                    priceOfNext: BigNumber(15),
+                    baseHundredthsPerTick: BigNumber(1),
+                    baseUpgradeClick: BigNumber(0)
+                }
+            }
+        },
+        {
+            id: 3,
+            type: "event",
+            name: "Internet",
+            plural: "Internets",
+            description: "Nanites infect a humanoid host, overpowering will and creating new nanites",
+            owned: 0,
+            // resourceType: "Bois",
+            info: {
+                Or: {
+                    basePrice: BigNumber(15),
+                    priceOfNext: BigNumber(15),
+                    baseHundredthsPerTick: BigNumber(1),
+                    baseUpgradeClick: BigNumber(0)
+                }
+            }
+        },
+        {
+            id: 4,
+            type: "event",
+            name: "Balistique",
+            plural: "Balistiqes",
+            description: "Nanites infect a humanoid host, overpowering will and creating new nanites",
+            owned: 0,
+            // resourceType: "Bois",
+            info: {
+                Or: {
+                    basePrice: BigNumber(15),
+                    priceOfNext: BigNumber(15),
+                    baseHundredthsPerTick: BigNumber(1),
+                    baseUpgradeClick: BigNumber(0)
+                }
+            }
+        },
+        {
+            id: 5,
+            type: "event",
+            name: "Programme Spatial",
+            plural: "Programme Spatiaux",
+            description: "Nanites infect a humanoid host, overpowering will and creating new nanites",
+            owned: 0,
+            // resourceType: "Bois",
+            info: {
+                Or: {
+                    basePrice: BigNumber(15),
+                    priceOfNext: BigNumber(15),
+                    baseHundredthsPerTick: BigNumber(1),
+                    baseUpgradeClick: BigNumber(0)
+                }
+            }
+        },
+        {
+            id: 6,
+            type: "event",
+            name: "Projet Yggdrasil",
+            plural: "Projets Ygggrasils",
+            description: "Nanites infect a humanoid host, overpowering will and creating new nanites",
+            owned: 0,
+            // resourceType: "Bois",
+            info: {
+                Or: {
+                    basePrice: BigNumber(15),
+                    priceOfNext: BigNumber(15),
+                    baseHundredthsPerTick: BigNumber(1),
+                    baseUpgradeClick: BigNumber(0)
+                }
+            }
+        },
+        {
+            id: 7,
+            type: "tool",
+            name: "Tronçonneuse",
+            plural: "Tronçonneuses",
+            description: "Nanites infect a humanoid host, overpowering will and creating new nanites",
+            owned: 0,
+            // resourceType: "Bois",
+            info: {
+                Or: {
+                    basePrice: BigNumber(15),
+                    priceOfNext: BigNumber(15),
+                    baseHundredthsPerTick: BigNumber(1),
+                    baseUpgradeClick: BigNumber(0)
+                }
+            }
+        },
+        {
+            id: 8,
+            type: "tool",
+            name: "Foreuse",
+            plural: "Foreuses",
+            description: "Nanites infect a humanoid host, overpowering will and creating new nanites",
+            owned: 0,
+            // resourceType: "Bois",
+            info: {
+                Or: {
+                    basePrice: BigNumber(15),
+                    priceOfNext: BigNumber(15),
+                    baseHundredthsPerTick: BigNumber(1),
+                    baseUpgradeClick: BigNumber(0)
+                }
+            }
+        },
+        {
+            id: 9,
+            type: "tool",
+            name: "Fusil",
+            plural: "Fusils",
+            description: "Nanites infect a humanoid host, overpowering will and creating new nanites",
+            owned: 0,
+            // resourceType: "Bois",
+            info: {
+                Or: {
+                    basePrice: BigNumber(15),
+                    priceOfNext: BigNumber(15),
+                    baseHundredthsPerTick: BigNumber(1),
+                    baseUpgradeClick: BigNumber(0)
+                }
+            }
+        },
+        {
+            id: 10,
+            type: "tool",
+            name: "Fonderie",
+            plural: "Fonderies",
+            description: "Nanites infect a humanoid host, overpowering will and creating new nanites",
+            owned: 0,
+            // resourceType: "Bois",
+            info: {
+                Or: {
+                    basePrice: BigNumber(15),
+                    priceOfNext: BigNumber(15),
+                    baseHundredthsPerTick: BigNumber(1),
+                    baseUpgradeClick: BigNumber(0)
+                }
+            }
+        },
+        {
+            id: 11,
+            type: "tool",
+            name: "Exploitation forestière",
+            plural: "Exploitation forestières",
+            description: "Nanites infect a humanoid host, overpowering will and creating new nanites",
+            owned: 0,
+            // resourceType: "Bois",
+            info: {
+                Or: {
+                    basePrice: BigNumber(15),
+                    priceOfNext: BigNumber(15),
+                    baseHundredthsPerTick: BigNumber(1),
+                    baseUpgradeClick: BigNumber(0)
+                }
+            }
+        },
+        {
+            id: 11,
+            type: "tool",
+            name: "Abattoir",
+            plural: "Abattoirs",
+            description: "Nanites infect a humanoid host, overpowering will and creating new nanites",
+            owned: 0,
+            // resourceType: "Bois",
+            info: {
+                Or: {
+                    basePrice: BigNumber(15),
+                    priceOfNext: BigNumber(15),
+                    baseHundredthsPerTick: BigNumber(1),
+                    baseUpgradeClick: BigNumber(0)
+                }
             }
         }
     ]
@@ -314,13 +525,12 @@ export const upgradesPerEras = {
 export const eras = {
     StoneAge: {
         name: "Age de Pierre",
-        resources: [resourcesTypes.Bois, resourcesTypes.Pierre],
-        upgrades: upgradesPerEras.StoneAge,
-        resourcesToUpgrade: {
-            [resourcesTypes.Bois.name]: 1000,
-            [resourcesTypes.Pierre.name]: 50
-        },
-        getNextEra: () => eras.MiddleAge
+        resources: [
+            resourcesTypes.Bois,
+            resourcesTypes.Pierre,
+            resourcesTypes.Nourriture
+        ],
+        upgrades: upgradesPerEras.StoneAge
     },
     MiddleAge: {
         name: "Moyen-Âge",
@@ -329,13 +539,12 @@ export const eras = {
             resourcesTypes.Pierre,
             resourcesTypes.Nourriture
         ],
-        upgrades: upgradesPerEras.MiddleAge,
-        resourcesToUpgrade: {
-            [resourcesTypes.Bois.name]: 10000000,
-            [resourcesTypes.Pierre.name]: 20000,
-            [resourcesTypes.Nourriture.name]: 50
-        },
-        getNextEra: () => undefined
+        upgrades: upgradesPerEras.MiddleAge
+    },
+    IndustrialAge: {
+        name: "Aire de l'industrialisation",
+        resources: [resourcesTypes.Or],
+        upgrades: upgradesPerEras.IndustrialAge
     }
 };
 // {

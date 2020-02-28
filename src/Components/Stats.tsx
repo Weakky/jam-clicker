@@ -4,11 +4,10 @@ import BigNumber from "big-number";
 
 import { prettifyNumber } from "../Utilities/utilities";
 import { State } from "../Reducers/gameReducer";
+import { Era, ResourceTypes } from "../game-data";
 
 type Props = {
-  bois: State["Bois"];
-  pierre: State["Pierre"];
-  nourriture: State["Nourriture"];
+  state: State;
 };
 
 const Stats: React.FC<Props> = props => {
@@ -23,7 +22,7 @@ const Stats: React.FC<Props> = props => {
         color: "black"
       }}
     >
-      <span >
+      {/* <span >
         Bois: {prettifyNumber(BigNumber(props.bois.hundredths).div(100))}{" "}
         ({prettifyNumber(BigNumber(props.bois.perSecond).div(10))}/s)
           <div id={"wood"}></div>
@@ -40,7 +39,21 @@ const Stats: React.FC<Props> = props => {
         ({prettifyNumber(BigNumber(props.nourriture.perSecond).div(10))}
         /s)
           <div id={"food"}></div>
-      </span>
+      </span> */}
+      {props.state.currentEra.resources.map(r => (
+        <span>
+          {r.name}:{" "}
+          {prettifyNumber(
+            BigNumber(props.state[r.name as ResourceTypes].hundredths).div(100)
+          )}{" "}
+          (
+          {prettifyNumber(
+            BigNumber(props.state[r.name as ResourceTypes].perSecond).div(10)
+          )}
+          /s)
+          <div id={r.name} />
+        </span>
+      ))}
     </div>
   );
 };

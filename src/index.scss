@@ -145,7 +145,7 @@ body {
   // padding-bottom: 200px;
 }
 
-#wood {
+#Bois {
   position: absolute;
   background-repeat: no-repeat;
   background-image: url("Ressources/primary/wood.svg");
@@ -153,7 +153,7 @@ body {
   width: 100%;
 }
 
-#stone {
+#Pierre {
   position: absolute;
   background-repeat: no-repeat;
   background-image: url("Ressources/primary/stone.svg");
@@ -161,10 +161,18 @@ body {
   width: 100%;
 }
 
-#food {
+#Nourriture {
   position: absolute;
   background-repeat: no-repeat;
   background-image: url("Ressources/primary/food.svg");
+  height: 40px;
+  width: 100%;
+}
+
+#Or {
+  position: absolute;
+  background-repeat: no-repeat;
+  background-image: url("Ressources/industrialAge/Paquet_de_thunes.svg");
   height: 40px;
   width: 100%;
 }

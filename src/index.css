@@ -90,24 +90,31 @@ body {
   #tooltip .description {
     font-size: 15px; }
 
-#wood {
+#Bois {
   position: absolute;
   background-repeat: no-repeat;
   background-image: url("Ressources/primary/wood.svg");
   height: 40px;
   width: 100%; }
 
-#stone {
+#Pierre {
   position: absolute;
   background-repeat: no-repeat;
   background-image: url("Ressources/primary/stone.svg");
   height: 40px;
   width: 100%; }
 
-#food {
+#Nourriture {
   position: absolute;
   background-repeat: no-repeat;
   background-image: url("Ressources/primary/food.svg");
+  height: 40px;
+  width: 100%; }
+
+#Or {
+  position: absolute;
+  background-repeat: no-repeat;
+  background-image: url("Ressources/industrialAge/Paquet_de_thunes.svg");
   height: 40px;
   width: 100%; }
 
