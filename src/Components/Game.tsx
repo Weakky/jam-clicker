@@ -155,6 +155,7 @@ class Game extends Component<Props> {
                 {renderTools()}
               </div>
             </div>
+              {renderTooltip()}
             <div style={{ minHeight: "50%" }}>
               <h2 className="text-center" style={{ marginTop: 0 }}>
                 Améliorations
