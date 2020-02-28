@@ -15,6 +15,10 @@ export const resourcesTypes = {
     Or: {
         name: "Or",
         image: "Ressources/primary/stone.svg"
+    },
+    Population: {
+        name: "Population",
+        image: "Ressources/primary/stone.svg"
     }
 };
 export const upgradesPerEras = {
@@ -543,7 +547,7 @@ export const eras = {
     },
     IndustrialAge: {
         name: "Aire de l'industrialisation",
-        resources: [resourcesTypes.Or],
+        resources: [resourcesTypes.Or, resourcesTypes.Population],
         upgrades: upgradesPerEras.IndustrialAge
     }
 };

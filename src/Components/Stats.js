@@ -10,9 +10,6 @@ const Stats = props => {
             alignItems: "center",
             color: "black"
         } }, props.state.currentEra.resources.map(r => (React.createElement("span", null,
-        r.name,
-        ":",
-        " ",
         prettifyNumber(BigNumber(props.state[r.name].hundredths).div(100)),
         " ",
         "(",

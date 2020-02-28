@@ -5,7 +5,12 @@ export type ResourceType = {
   image: string;
 };
 
-export type ResourceTypes = "Bois" | "Pierre" | "Nourriture" | "Or";
+export type ResourceTypes =
+  | "Bois"
+  | "Pierre"
+  | "Nourriture"
+  | "Or"
+  | "Population";
 
 export const resourcesTypes: Record<ResourceTypes, ResourceType> = {
   Bois: {
@@ -22,6 +27,10 @@ export const resourcesTypes: Record<ResourceTypes, ResourceType> = {
   },
   Or: {
     name: "Or",
+    image: "Ressources/primary/stone.svg"
+  },
+  Population: {
+    name: "Population",
     image: "Ressources/primary/stone.svg"
   }
 };
@@ -606,7 +615,7 @@ export const eras: Eras = {
   },
   IndustrialAge: {
     name: "Aire de l'industrialisation",
-    resources: [resourcesTypes.Or],
+    resources: [resourcesTypes.Or, resourcesTypes.Population],
     upgrades: upgradesPerEras.IndustrialAge
   }
 };

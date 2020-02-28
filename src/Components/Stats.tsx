@@ -42,7 +42,6 @@ const Stats: React.FC<Props> = props => {
       </span> */}
       {props.state.currentEra.resources.map(r => (
         <span>
-          {r.name}:{" "}
           {prettifyNumber(
             BigNumber(props.state[r.name as ResourceTypes].hundredths).div(100)
           )}{" "}

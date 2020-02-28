@@ -49,6 +49,12 @@ const defaultState: State = {
     handGenerated: BigNumber(0),
     perSecond: BigNumber(0)
   },
+  Population: {
+    hundredths: BigNumber(10000000),
+    totalGenerated: BigNumber(0),
+    handGenerated: BigNumber(0),
+    perSecond: BigNumber(0)
+  },
   eras,
   oldUpgrades: [],
   currentEra: eras.StoneAge,
