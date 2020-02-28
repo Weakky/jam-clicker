@@ -16,6 +16,7 @@ import {
 } from "../Actions/gameActions";
 import { prettifyNumber, updateTitleTag } from "../Utilities/utilities";
 import { State } from "../Reducers/gameReducer";
+import { ResourceTypes } from "../game-data";
 
 class Game extends Component<Props> {
   constructor(props: any) {
@@ -28,7 +29,12 @@ class Game extends Component<Props> {
   }
 
   displayNaniteValue() {
-    const wholeNanites = BigNumber(this.props.Bois.hundredths).div(100);
+    const resource = this.props.state.currentEra.resources[0]
+      .name as ResourceTypes;
+
+    const wholeNanites = BigNumber(this.props.state[resource].hundredths).div(
+      100
+    );
     return prettifyNumber(wholeNanites, true);
   }
 
@@ -101,7 +107,7 @@ class Game extends Component<Props> {
           style={{
             backgroundColor: "yellow",
             display: "block",
-            height: "84vh",
+            height: "92vh",
             width: "100%"
           }}
         >
@@ -115,7 +121,13 @@ class Game extends Component<Props> {
             }}
           >
             <div id="banner">
-              <h2>{this.displayNaniteValue()} stères de bois</h2>
+              <h2>
+                {this.displayNaniteValue()}{" "}
+                {this.props.state.currentEra.name === "Age de Pierre" ||
+                this.props.state.currentEra.name === "Moyen-Âge"
+                  ? "stères de bois"
+                  : "Or"}
+              </h2>
               <small>
                 {prettifyNumber(BigNumber(this.props.Bois.perSecond).div(10))}{" "}
                 par seconde
@@ -174,8 +186,15 @@ class Game extends Component<Props> {
             </div>
           </div>
         </div>
-        <div
+        {/* <div
           style={{ backgroundColor: "purple", width: "100%", height: "8vh" }}
+        >
+          {this.props.state.currentEra.quotes[this.props.state.quoteIndex]}
+        </div> */}
+        <audio
+          src={this.props.state.currentEra.backgroundSoundPath}
+          autoPlay={true}
+          loop={true}
         />
       </div>
     );

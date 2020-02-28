@@ -15,7 +15,9 @@ class Game extends Component {
         window.setInterval(() => props.saveGame(), 60000);
     }
     displayNaniteValue() {
-        const wholeNanites = BigNumber(this.props.Bois.hundredths).div(100);
+        const resource = this.props.state.currentEra.resources[0]
+            .name;
+        const wholeNanites = BigNumber(this.props.state[resource].hundredths).div(100);
         return prettifyNumber(wholeNanites, true);
     }
     render() {
@@ -55,7 +57,7 @@ class Game extends Component {
             React.createElement("div", { style: {
                     backgroundColor: "yellow",
                     display: "block",
-                    height: "84vh",
+                    height: "92vh",
                     width: "100%"
                 } },
                 React.createElement("div", { style: {
@@ -68,7 +70,11 @@ class Game extends Component {
                     React.createElement("div", { id: "banner" },
                         React.createElement("h2", null,
                             this.displayNaniteValue(),
-                            " st\u00E8res de bois"),
+                            " ",
+                            this.props.state.currentEra.name === "Age de Pierre" ||
+                                this.props.state.currentEra.name === "Moyen-Âge"
+                                ? "stères de bois"
+                                : "Or"),
                         React.createElement("small", null,
                             prettifyNumber(BigNumber(this.props.Bois.perSecond).div(10)),
                             " ",
@@ -99,7 +105,7 @@ class Game extends Component {
                                 backgroundColor: "black",
                                 overflowY: "scroll"
                             }, onMouseLeave: () => this.props.hideTooltip() }, renderEnhancements())))),
-            React.createElement("div", { style: { backgroundColor: "purple", width: "100%", height: "8vh" } })));
+            React.createElement("audio", { src: this.props.state.currentEra.backgroundSoundPath, autoPlay: true, loop: true })));
     }
 }
 const mapStateToProps = (state) => {

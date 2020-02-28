@@ -1,34 +1,45 @@
 import BigNumber from "big-number";
 import { eras } from "../game-data";
+window.isPlaying = false;
+const chopAudio = new Audio("/CHOPP_1.wav");
+chopAudio.volume = 0.5;
+const chop2Audio = new Audio("/CHOPP_2.wav");
+chop2Audio.volume = 0.5;
+const buildingAudio = new Audio("/Building.wav");
+buildingAudio.volume = 0.5;
+const coinAudio = new Audio("/Coin.wav");
+coinAudio.volume = 0.5;
 const defaultState = {
     lastTickTime: null,
+    quoteIndex: 0,
+    lastQuoteTickTime: Date.now(),
     buildingsOwned: 0,
     Bois: {
-        hundredths: BigNumber(10000000),
+        hundredths: BigNumber(100000000000),
         totalGenerated: BigNumber(0),
         handGenerated: BigNumber(0),
         perSecond: BigNumber(0)
     },
     Pierre: {
-        hundredths: BigNumber(10000000),
+        hundredths: BigNumber(100000000000),
         totalGenerated: BigNumber(0),
         handGenerated: BigNumber(0),
         perSecond: BigNumber(0)
     },
     Nourriture: {
-        hundredths: BigNumber(10000000),
+        hundredths: BigNumber(100000000000),
         totalGenerated: BigNumber(0),
         handGenerated: BigNumber(0),
         perSecond: BigNumber(0)
     },
     Or: {
-        hundredths: BigNumber(10000000),
+        hundredths: BigNumber(0),
         totalGenerated: BigNumber(0),
         handGenerated: BigNumber(0),
         perSecond: BigNumber(0)
     },
     Population: {
-        hundredths: BigNumber(10000000),
+        hundredths: BigNumber(0),
         totalGenerated: BigNumber(0),
         handGenerated: BigNumber(0),
         perSecond: BigNumber(0)
@@ -44,7 +55,8 @@ function deepCloneBuildingObject(buildingObject) {
     return Object.assign(Object.assign({}, buildingObject), { info: Object.assign(Object.assign({}, buildingObject.info), { Bois: buildingObject.info.Bois
                 ? Object.assign(Object.assign({}, buildingObject.info.Bois), { basePrice: BigNumber(buildingObject.info.Bois.basePrice), priceOfNext: BigNumber(buildingObject.info.Bois.priceOfNext), baseHundredthsPerTick: BigNumber(buildingObject.info.Bois.baseHundredthsPerTick) }) : undefined, Pierre: buildingObject.info.Pierre
                 ? Object.assign(Object.assign({}, buildingObject.info.Pierre), { basePrice: BigNumber(buildingObject.info.Pierre.basePrice), priceOfNext: BigNumber(buildingObject.info.Pierre.priceOfNext), baseHundredthsPerTick: BigNumber(buildingObject.info.Pierre.baseHundredthsPerTick) }) : undefined, Nourriture: buildingObject.info.Nourriture
-                ? Object.assign(Object.assign({}, buildingObject.info.Nourriture), { basePrice: BigNumber(buildingObject.info.Nourriture.basePrice), priceOfNext: BigNumber(buildingObject.info.Nourriture.priceOfNext), baseHundredthsPerTick: BigNumber(buildingObject.info.Nourriture.baseHundredthsPerTick) }) : undefined }) });
+                ? Object.assign(Object.assign({}, buildingObject.info.Nourriture), { basePrice: BigNumber(buildingObject.info.Nourriture.basePrice), priceOfNext: BigNumber(buildingObject.info.Nourriture.priceOfNext), baseHundredthsPerTick: BigNumber(buildingObject.info.Nourriture.baseHundredthsPerTick) }) : undefined, Or: buildingObject.info.Or
+                ? Object.assign(Object.assign({}, buildingObject.info.Or), { basePrice: BigNumber(buildingObject.info.Or.basePrice), priceOfNext: BigNumber(buildingObject.info.Or.priceOfNext), baseHundredthsPerTick: BigNumber(buildingObject.info.Or.baseHundredthsPerTick) }) : undefined }) });
 }
 function deepCloneStateObject(stateObject) {
     let upgrades = [];
@@ -68,6 +80,16 @@ function deepCloneStateObject(stateObject) {
             totalGenerated: BigNumber(stateObject.Nourriture.totalGenerated),
             handGenerated: BigNumber(stateObject.Nourriture.handGenerated),
             perSecond: BigNumber(stateObject.Nourriture.perSecond)
+        }, Or: {
+            hundredths: BigNumber(stateObject.Or.hundredths),
+            totalGenerated: BigNumber(stateObject.Or.totalGenerated),
+            handGenerated: BigNumber(stateObject.Or.handGenerated),
+            perSecond: BigNumber(stateObject.Or.perSecond)
+        }, Population: {
+            hundredths: BigNumber(stateObject.Population.hundredths),
+            totalGenerated: BigNumber(stateObject.Population.totalGenerated),
+            handGenerated: BigNumber(stateObject.Population.handGenerated),
+            perSecond: BigNumber(stateObject.Population.perSecond)
         }, currentEra: Object.assign(Object.assign({}, stateObject.currentEra), { upgrades: upgrades }), oldUpgrades });
 }
 export default (state = defaultState, action) => {
@@ -149,9 +171,24 @@ export default (state = defaultState, action) => {
                 });
             });
             stateClone.lastTickTime = tickTime;
+            // if (Date.now() - state.lastQuoteTickTime > 10000) {
+            //   state.lastQuoteTickTime = Date.now();
+            //   state.quoteIndex += 1;
+            //   if (state.quoteIndex > state.currentEra.quotes.length) {
+            //     state.quoteIndex = 0;
+            //     console.log("back to zero");
+            //   }
+            //   console.log(state.quoteIndex, state.currentEra.quotes.length);
+            // }
             return stateClone;
         case "ADD_NANITES":
             const resourcesNames = state.currentEra.resources.map(r => r.name);
+            if (state.currentEra.name === "Âge de l'industrialisation") {
+                coinAudio.play();
+            }
+            else {
+                chopAudio.play();
+            }
             resourcesNames.forEach(resourceName => {
                 const clickUpgrades = state.currentEra.upgrades
                     .filter(u => u.info[resourceName] !== undefined)
@@ -170,13 +207,14 @@ export default (state = defaultState, action) => {
                 //   }, 0);
                 // Add to Bois
                 if (resourceName === "Bois") {
-                    stateClone.Bois.hundredths.plus(action.payload).plus(clickUpgrades);
-                    stateClone.Bois.totalGenerated
-                        .plus(action.payload)
-                        .plus(clickUpgrades);
-                    stateClone.Bois.handGenerated
-                        .plus(action.payload)
-                        .plus(clickUpgrades);
+                    stateClone.Bois.hundredths.plus(100).plus(clickUpgrades);
+                    stateClone.Bois.totalGenerated.plus(100).plus(clickUpgrades);
+                    stateClone.Bois.handGenerated.plus(100).plus(clickUpgrades);
+                }
+                else if (resourceName === "Or") {
+                    stateClone.Or.hundredths.plus(10000).plus(clickUpgrades);
+                    stateClone.Or.totalGenerated.plus(10000).plus(clickUpgrades);
+                    stateClone.Or.handGenerated.plus(10000).plus(clickUpgrades);
                 }
                 else {
                     // Add to Pierre
@@ -191,6 +229,18 @@ export default (state = defaultState, action) => {
             if (!upgrade) {
                 throw new Error("Could not find upgrade (gameReducer.ts:line 171)");
             }
+            if (upgrade.type === "tool") {
+                chop2Audio.play();
+            }
+            else {
+                buildingAudio.play();
+            }
+            // if ((window as any).isPlaying === false) {
+            //   (window as any).isPlaying = true;
+            //   new Audio("/Building.wav").play().then(() => {
+            //     (window as any).isPlaying = false;
+            //   });
+            // }
             upgrade.owned++;
             stateClone.buildingsOwned++;
             Object.entries(upgrade.info)
@@ -212,8 +262,30 @@ export default (state = defaultState, action) => {
                     ...oldEra.upgrades
                 ];
                 stateClone.currentEra = upgrade.getNextEra();
+                // stateClone.Or.hundredths = BigNumber(100000000);
+                stateClone.Or.hundredths = BigNumber(100000000000);
+                stateClone.Population.hundredths = BigNumber(700000000000);
+                stateClone.Population.perSecond = BigNumber(100000000);
+                stateClone.oldUpgrades.push({
+                    id: 999,
+                    name: "Increment population",
+                    description: "fsdf",
+                    owned: 1,
+                    plural: "fsdf",
+                    type: "tool",
+                    info: {
+                        Population: {
+                            basePrice: BigNumber(0),
+                            baseHundredthsPerTick: BigNumber(100000000),
+                            baseUpgradeClick: BigNumber(0),
+                            priceOfNext: BigNumber(0)
+                        }
+                    }
+                });
+                stateClone.Bois = defaultState.Bois;
+                stateClone.Pierre = defaultState.Pierre;
+                stateClone.Nourriture = defaultState.Nourriture;
             }
-            console.log(stateClone);
             return stateClone;
         case "HIDE_TOOLTIP":
             stateClone.tooltipActive = false;

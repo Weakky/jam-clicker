@@ -44,6 +44,7 @@ type Cost = {
   priceOfNext: BigNumberInstance;
   baseHundredthsPerTick: BigNumberInstance; //NHPT = Nanite Hundreths Per Tick
   baseUpgradeClick: BigNumberInstance;
+  // buyOnlyOnce?: boolean;
 };
 
 type CostPerResource = {
@@ -74,10 +75,10 @@ export const upgradesPerEras: UpgradesPerEras = {
       // resourceType: "Bois",
       info: {
         Bois: {
-          basePrice: BigNumber(15),
-          priceOfNext: BigNumber(15),
+          basePrice: BigNumber(10),
+          priceOfNext: BigNumber(10),
           baseHundredthsPerTick: BigNumber(0), //NHPT = Nanite Hundreths Per Tick
-          baseUpgradeClick: BigNumber(100)
+          baseUpgradeClick: BigNumber(1000)
         }
       }
     },
@@ -100,7 +101,7 @@ export const upgradesPerEras: UpgradesPerEras = {
           basePrice: BigNumber(0),
           priceOfNext: BigNumber(0),
           baseHundredthsPerTick: BigNumber(0), //NHPT = Nanite Hundreths Per Tick
-          baseUpgradeClick: BigNumber(100)
+          baseUpgradeClick: BigNumber(1000)
         }
       }
     },
@@ -123,7 +124,7 @@ export const upgradesPerEras: UpgradesPerEras = {
           basePrice: BigNumber(0),
           priceOfNext: BigNumber(0),
           baseHundredthsPerTick: BigNumber(0), //NHPT = Nanite Hundreths Per Tick
-          baseUpgradeClick: BigNumber(100)
+          baseUpgradeClick: BigNumber(1000)
         }
       }
     },
@@ -139,13 +140,35 @@ export const upgradesPerEras: UpgradesPerEras = {
         Bois: {
           basePrice: BigNumber(1100),
           priceOfNext: BigNumber(1100),
-          baseHundredthsPerTick: BigNumber(80),
+          baseHundredthsPerTick: BigNumber(0),
           baseUpgradeClick: BigNumber(0)
         }
       }
     },
     {
       id: 8,
+      type: "event",
+      name: "Travail du fer",
+      plural: "Travails du fer",
+      description: "Travail du fer",
+      owned: 0,
+      info: {
+        Bois: {
+          basePrice: BigNumber(1100),
+          priceOfNext: BigNumber(1100),
+          baseHundredthsPerTick: BigNumber(80),
+          baseUpgradeClick: BigNumber(0)
+        },
+        Pierre: {
+          basePrice: BigNumber(1100),
+          priceOfNext: BigNumber(1100),
+          baseHundredthsPerTick: BigNumber(80),
+          baseUpgradeClick: BigNumber(0)
+        }
+      }
+    },
+    {
+      id: 9,
       type: "event",
       name: "Château",
       plural: "Châteaux",
@@ -235,13 +258,12 @@ export const upgradesPerEras: UpgradesPerEras = {
       plural: "Scies à main",
       description: "Outil pour couper du bois",
       owned: 0,
-      // resourceType: "Bois",
       info: {
         Bois: {
-          basePrice: BigNumber(15),
-          priceOfNext: BigNumber(15),
-          baseHundredthsPerTick: BigNumber(1),
-          baseUpgradeClick: BigNumber(0)
+          basePrice: BigNumber(50),
+          priceOfNext: BigNumber(50),
+          baseHundredthsPerTick: BigNumber(0),
+          baseUpgradeClick: BigNumber(5000)
         }
       }
     },
@@ -256,10 +278,16 @@ export const upgradesPerEras: UpgradesPerEras = {
       // resourceType: "Bois",
       info: {
         Bois: {
-          basePrice: BigNumber(15),
-          priceOfNext: BigNumber(15),
-          baseHundredthsPerTick: BigNumber(1),
+          basePrice: BigNumber(50),
+          priceOfNext: BigNumber(50),
+          baseHundredthsPerTick: BigNumber(0),
           baseUpgradeClick: BigNumber(0)
+        },
+        Pierre: {
+          basePrice: BigNumber(0),
+          priceOfNext: BigNumber(0),
+          baseHundredthsPerTick: BigNumber(0),
+          baseUpgradeClick: BigNumber(5000)
         }
       }
     },
@@ -273,27 +301,16 @@ export const upgradesPerEras: UpgradesPerEras = {
       owned: 0,
       info: {
         Bois: {
-          basePrice: BigNumber(15),
-          priceOfNext: BigNumber(15),
-          baseHundredthsPerTick: BigNumber(1),
+          basePrice: BigNumber(50),
+          priceOfNext: BigNumber(50),
+          baseHundredthsPerTick: BigNumber(0),
           baseUpgradeClick: BigNumber(0)
-        }
-      }
-    },
-    {
-      id: 4,
-      name: "Armurerie",
-      plural: "Armureries",
-      type: "tool",
-      description:
-        "An entire manufactoring facility devoted to creation of new nanites",
-      owned: 0,
-      info: {
-        Bois: {
-          basePrice: BigNumber(15),
-          priceOfNext: BigNumber(15),
-          baseHundredthsPerTick: BigNumber(1),
-          baseUpgradeClick: BigNumber(0)
+        },
+        Nourriture: {
+          basePrice: BigNumber(0),
+          priceOfNext: BigNumber(0),
+          baseHundredthsPerTick: BigNumber(0),
+          baseUpgradeClick: BigNumber(5000)
         }
       }
     },
@@ -307,9 +324,26 @@ export const upgradesPerEras: UpgradesPerEras = {
       owned: 0,
       info: {
         Bois: {
-          basePrice: BigNumber(15),
-          priceOfNext: BigNumber(15),
-          baseHundredthsPerTick: BigNumber(1),
+          basePrice: BigNumber(2100),
+          priceOfNext: BigNumber(1100),
+          baseHundredthsPerTick: BigNumber(5000),
+          baseUpgradeClick: BigNumber(0)
+        }
+      }
+    },
+    {
+      id: 4,
+      name: "Armurerie",
+      plural: "Armureries",
+      type: "tool",
+      description:
+        "An entire manufactoring facility devoted to creation of new nanites",
+      owned: 0,
+      info: {
+        Pierre: {
+          basePrice: BigNumber(2100),
+          priceOfNext: BigNumber(1100),
+          baseHundredthsPerTick: BigNumber(5000),
           baseUpgradeClick: BigNumber(0)
         }
       }
@@ -323,10 +357,10 @@ export const upgradesPerEras: UpgradesPerEras = {
         "An entire manufactoring facility devoted to creation of new nanites",
       owned: 0,
       info: {
-        Bois: {
-          basePrice: BigNumber(15),
-          priceOfNext: BigNumber(15),
-          baseHundredthsPerTick: BigNumber(1),
+        Nourriture: {
+          basePrice: BigNumber(2100),
+          priceOfNext: BigNumber(1100),
+          baseHundredthsPerTick: BigNumber(5000),
           baseUpgradeClick: BigNumber(0)
         }
       }
@@ -341,9 +375,21 @@ export const upgradesPerEras: UpgradesPerEras = {
       owned: 0,
       info: {
         Bois: {
-          basePrice: BigNumber(15),
-          priceOfNext: BigNumber(15),
-          baseHundredthsPerTick: BigNumber(1),
+          basePrice: BigNumber(50000),
+          priceOfNext: BigNumber(50000),
+          baseHundredthsPerTick: BigNumber(1000),
+          baseUpgradeClick: BigNumber(0)
+        },
+        Pierre: {
+          basePrice: BigNumber(50000),
+          priceOfNext: BigNumber(50000),
+          baseHundredthsPerTick: BigNumber(1000),
+          baseUpgradeClick: BigNumber(0)
+        },
+        Nourriture: {
+          basePrice: BigNumber(50000),
+          priceOfNext: BigNumber(50000),
+          baseHundredthsPerTick: BigNumber(1000),
           baseUpgradeClick: BigNumber(0)
         }
       }
@@ -358,9 +404,50 @@ export const upgradesPerEras: UpgradesPerEras = {
       owned: 0,
       info: {
         Bois: {
-          basePrice: BigNumber(15),
-          priceOfNext: BigNumber(15),
-          baseHundredthsPerTick: BigNumber(1),
+          basePrice: BigNumber(75000),
+          priceOfNext: BigNumber(75000),
+          baseHundredthsPerTick: BigNumber(1000),
+          baseUpgradeClick: BigNumber(0)
+        },
+        Pierre: {
+          basePrice: BigNumber(75000),
+          priceOfNext: BigNumber(75000),
+          baseHundredthsPerTick: BigNumber(1000),
+          baseUpgradeClick: BigNumber(0)
+        },
+        Nourriture: {
+          basePrice: BigNumber(75000),
+          priceOfNext: BigNumber(75000),
+          baseHundredthsPerTick: BigNumber(1000),
+          baseUpgradeClick: BigNumber(0)
+        }
+      }
+    },
+    {
+      id: 9,
+      name: "Monnaie",
+      plural: "Monnaies",
+      type: "event",
+      description:
+        "An entire manufactoring facility devoted to creation of new nanites",
+      owned: 0,
+      info: {
+        Bois: {
+          basePrice: BigNumber(100000),
+          priceOfNext: BigNumber(100000),
+          baseHundredthsPerTick: BigNumber(5000),
+          baseUpgradeClick: BigNumber(0)
+        },
+        Pierre: {
+          basePrice: BigNumber(100000),
+          priceOfNext: BigNumber(100000),
+          baseHundredthsPerTick: BigNumber(5000),
+          baseUpgradeClick: BigNumber(0)
+        },
+        Nourriture: {
+          basePrice: BigNumber(100000),
+          priceOfNext: BigNumber(100000),
+          baseHundredthsPerTick: BigNumber(5000),
           baseUpgradeClick: BigNumber(0)
         }
       },
@@ -378,9 +465,16 @@ export const upgradesPerEras: UpgradesPerEras = {
       // resourceType: "Bois",
       info: {
         Or: {
-          basePrice: BigNumber(15),
-          priceOfNext: BigNumber(15),
-          baseHundredthsPerTick: BigNumber(1),
+          basePrice: BigNumber(1000001),
+          priceOfNext: BigNumber(1000001),
+          baseHundredthsPerTick: BigNumber(1000000),
+          baseUpgradeClick: BigNumber(0)
+          // buyOnlyOnce: true
+        },
+        Population: {
+          basePrice: BigNumber(0),
+          priceOfNext: BigNumber(0),
+          baseHundredthsPerTick: BigNumber(10000000),
           baseUpgradeClick: BigNumber(0)
         }
       }
@@ -396,9 +490,16 @@ export const upgradesPerEras: UpgradesPerEras = {
       // resourceType: "Bois",
       info: {
         Or: {
-          basePrice: BigNumber(15),
-          priceOfNext: BigNumber(15),
-          baseHundredthsPerTick: BigNumber(1),
+          basePrice: BigNumber(1000001),
+          priceOfNext: BigNumber(1000001),
+          baseHundredthsPerTick: BigNumber(1000000),
+          baseUpgradeClick: BigNumber(0)
+          // buyOnlyOnce: true
+        },
+        Population: {
+          basePrice: BigNumber(0),
+          priceOfNext: BigNumber(0),
+          baseHundredthsPerTick: BigNumber(10000000),
           baseUpgradeClick: BigNumber(0)
         }
       }
@@ -414,9 +515,16 @@ export const upgradesPerEras: UpgradesPerEras = {
       // resourceType: "Bois",
       info: {
         Or: {
-          basePrice: BigNumber(15),
-          priceOfNext: BigNumber(15),
-          baseHundredthsPerTick: BigNumber(1),
+          basePrice: BigNumber(1000001),
+          priceOfNext: BigNumber(1000001),
+          baseHundredthsPerTick: BigNumber(1000000),
+          baseUpgradeClick: BigNumber(0)
+          // buyOnlyOnce: true
+        },
+        Population: {
+          basePrice: BigNumber(0),
+          priceOfNext: BigNumber(0),
+          baseHundredthsPerTick: BigNumber(10000000),
           baseUpgradeClick: BigNumber(0)
         }
       }
@@ -432,9 +540,16 @@ export const upgradesPerEras: UpgradesPerEras = {
       // resourceType: "Bois",
       info: {
         Or: {
-          basePrice: BigNumber(15),
-          priceOfNext: BigNumber(15),
-          baseHundredthsPerTick: BigNumber(1),
+          basePrice: BigNumber(10000000),
+          priceOfNext: BigNumber(10000000),
+          baseHundredthsPerTick: BigNumber(10000000),
+          baseUpgradeClick: BigNumber(0)
+          // buyOnlyOnce: true
+        },
+        Population: {
+          basePrice: BigNumber(0),
+          priceOfNext: BigNumber(0),
+          baseHundredthsPerTick: BigNumber(-10000000),
           baseUpgradeClick: BigNumber(0)
         }
       }
@@ -450,10 +565,17 @@ export const upgradesPerEras: UpgradesPerEras = {
       // resourceType: "Bois",
       info: {
         Or: {
-          basePrice: BigNumber(15),
-          priceOfNext: BigNumber(15),
-          baseHundredthsPerTick: BigNumber(1),
-          baseUpgradeClick: BigNumber(0)
+          basePrice: BigNumber(40000000),
+          priceOfNext: BigNumber(40000000),
+          baseHundredthsPerTick: BigNumber(0),
+          baseUpgradeClick: BigNumber(5000000000)
+          // buyOnlyOnce: true
+        },
+        Population: {
+          basePrice: BigNumber(0),
+          priceOfNext: BigNumber(0),
+          baseHundredthsPerTick: BigNumber(0),
+          baseUpgradeClick: BigNumber(-5000000000)
         }
       }
     },
@@ -468,10 +590,18 @@ export const upgradesPerEras: UpgradesPerEras = {
       // resourceType: "Bois",
       info: {
         Or: {
-          basePrice: BigNumber(15),
-          priceOfNext: BigNumber(15),
-          baseHundredthsPerTick: BigNumber(1),
+          basePrice: BigNumber(10000000000),
+          priceOfNext: BigNumber(10000000000),
+          baseHundredthsPerTick: BigNumber(0),
           baseUpgradeClick: BigNumber(0)
+          // buyOnlyOnce: true
+        },
+        Population: {
+          basePrice: BigNumber(0),
+          priceOfNext: BigNumber(0),
+          baseHundredthsPerTick: BigNumber(-10000000000000000),
+          baseUpgradeClick: BigNumber(-10000000000000000)
+          // buyOnlyOnce: true
         }
       }
     },
@@ -486,10 +616,10 @@ export const upgradesPerEras: UpgradesPerEras = {
       // resourceType: "Bois",
       info: {
         Or: {
-          basePrice: BigNumber(15),
-          priceOfNext: BigNumber(15),
-          baseHundredthsPerTick: BigNumber(1),
-          baseUpgradeClick: BigNumber(0)
+          basePrice: BigNumber(100000),
+          priceOfNext: BigNumber(100000),
+          baseHundredthsPerTick: BigNumber(0),
+          baseUpgradeClick: BigNumber(1000000)
         }
       }
     },
@@ -504,10 +634,10 @@ export const upgradesPerEras: UpgradesPerEras = {
       // resourceType: "Bois",
       info: {
         Or: {
-          basePrice: BigNumber(15),
-          priceOfNext: BigNumber(15),
-          baseHundredthsPerTick: BigNumber(1),
-          baseUpgradeClick: BigNumber(0)
+          basePrice: BigNumber(100000),
+          priceOfNext: BigNumber(100000),
+          baseHundredthsPerTick: BigNumber(0),
+          baseUpgradeClick: BigNumber(1000000)
         }
       }
     },
@@ -522,10 +652,10 @@ export const upgradesPerEras: UpgradesPerEras = {
       // resourceType: "Bois",
       info: {
         Or: {
-          basePrice: BigNumber(15),
-          priceOfNext: BigNumber(15),
-          baseHundredthsPerTick: BigNumber(1),
-          baseUpgradeClick: BigNumber(0)
+          basePrice: BigNumber(100000),
+          priceOfNext: BigNumber(100000),
+          baseHundredthsPerTick: BigNumber(0),
+          baseUpgradeClick: BigNumber(1000000)
         }
       }
     },
@@ -540,9 +670,9 @@ export const upgradesPerEras: UpgradesPerEras = {
       // resourceType: "Bois",
       info: {
         Or: {
-          basePrice: BigNumber(15),
-          priceOfNext: BigNumber(15),
-          baseHundredthsPerTick: BigNumber(1),
+          basePrice: BigNumber(200000),
+          priceOfNext: BigNumber(200000),
+          baseHundredthsPerTick: BigNumber(100000),
           baseUpgradeClick: BigNumber(0)
         }
       }
@@ -558,15 +688,15 @@ export const upgradesPerEras: UpgradesPerEras = {
       // resourceType: "Bois",
       info: {
         Or: {
-          basePrice: BigNumber(15),
-          priceOfNext: BigNumber(15),
-          baseHundredthsPerTick: BigNumber(1),
+          basePrice: BigNumber(200000),
+          priceOfNext: BigNumber(200000),
+          baseHundredthsPerTick: BigNumber(100000),
           baseUpgradeClick: BigNumber(0)
         }
       }
     },
     {
-      id: 11,
+      id: 12,
       type: "tool",
       name: "Abattoir",
       plural: "Abattoirs",
@@ -576,9 +706,9 @@ export const upgradesPerEras: UpgradesPerEras = {
       // resourceType: "Bois",
       info: {
         Or: {
-          basePrice: BigNumber(15),
-          priceOfNext: BigNumber(15),
-          baseHundredthsPerTick: BigNumber(1),
+          basePrice: BigNumber(200000),
+          priceOfNext: BigNumber(200000),
+          baseHundredthsPerTick: BigNumber(100000),
           baseUpgradeClick: BigNumber(0)
         }
       }
@@ -590,6 +720,9 @@ export type Era = {
   name: string;
   resources: ResourceType[];
   upgrades: Upgrade[];
+  backgroundSoundPath: string;
+  quotes: string[];
+  earthImagePath: string;
 };
 
 export type Eras = Record<ErasType, Era>;
@@ -602,7 +735,17 @@ export const eras: Eras = {
       resourcesTypes.Pierre,
       resourcesTypes.Nourriture
     ],
-    upgrades: upgradesPerEras.StoneAge
+    upgrades: upgradesPerEras.StoneAge,
+    backgroundSoundPath: "/Stone_Age.wav",
+    quotes: [
+      "Pierre ?.. - Présent ! - Pierre ?.. - Présent...",
+      "Pierre qui roule amasse le bois… Non attends c’est pas ça !",
+      "Un homme s’est écrié “YABADABADOU !” avant de partir à dos de dinosaures, nous sommes toujours à se recherche…",
+      "Dernier le Dinosaure a été retrouvé hier, vous gagnez 1200 de nourriture (mais personne n’osera en manger)",
+      "Je vois une porte rouge et je veux la peindre en noir… Plus aucune couleur, je les veux en noir…",
+      "Vos villageois ont érigés un cercle de pierre en hommage à une divinité, elle vous ressemble étrangement d’ailleurs..."
+    ],
+    earthImagePath: ""
   },
   MiddleAge: {
     name: "Moyen-Âge",
@@ -611,12 +754,30 @@ export const eras: Eras = {
       resourcesTypes.Pierre,
       resourcesTypes.Nourriture
     ],
-    upgrades: upgradesPerEras.MiddleAge
+    upgrades: upgradesPerEras.MiddleAge,
+    backgroundSoundPath: "/Medieval_Age.wav",
+    quotes: [
+      "Le nouveau morceau du barde “La complainte de la serveuse” fait un tabac, il sera à Chnafon dans 2 jours",
+      "Une OVNI (Oiseau Volant non identifié) a été aperçu non loin des côtes Sud, il cracherait du feu et serait accompagné d’un âne et d’un ogre...",
+      'Les athéistes du monde entier ont trouvés une religion à base de diamant: "Nous avions tort depuis le début !"',
+      "Un aventurier simule une fausse blessure par flèche au genou",
+      "C’est pas faux"
+    ],
+    earthImagePath: ""
   },
   IndustrialAge: {
-    name: "Aire de l'industrialisation",
+    name: "Âge de l'industrialisation",
     resources: [resourcesTypes.Or, resourcesTypes.Population],
-    upgrades: upgradesPerEras.IndustrialAge
+    upgrades: upgradesPerEras.IndustrialAge,
+    backgroundSoundPath: "/Industrial_Age.wav",
+    quotes: [
+      "Vous venez de rencontrer un drôle de bonhomme avec un monocle et un haut de forme… Il a l’air sympathique après tout !",
+      "Je sors d’une réunion avec un certain Ronald… Sa sandwicherie a l’air d’avoir de l’avenir !",
+      "L’acier va révolutionner le monde de l’industrie” s’exclame un économiste connu.",
+      "Afin de protéger le monde de la dévastation !” s’exprime le 1er ministre sur la construction d’une usine d’armes.",
+      "Mon clavir st foutu, la touche ntr “z” t “r” n fonctionn plus, aidz moi svp !"
+    ],
+    earthImagePath: ""
   }
 };
 
