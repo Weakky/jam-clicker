@@ -1,55 +1,46 @@
 import BigNumber, { BigNumberInstance } from "big-number";
 import { updateTitleTag } from "../Utilities/utilities";
-import { eras, Eras, Era, Upgrade } from "../game-data";
+import { eras, Eras, Era, Upgrade, ResourceTypes } from "../game-data";
+
+export type StateResource = {
+  hundredths: BigNumberInstance;
+  generated: BigNumberInstance;
+  handGenerated: BigNumberInstance;
+  perSecond: BigNumberInstance;
+};
+
+export type StateResources = Record<ResourceTypes, StateResource>;
 
 export type State = {
   lastTickTime: number | null;
   buildingsOwned: number;
-  Bois: {
-    naniteHundredths: BigNumberInstance;
-    nanitesGenerated: BigNumberInstance;
-    nanitesHandGenerated: BigNumberInstance;
-    nanitesPerSecond: BigNumberInstance;
-  };
-  Pierre: {
-    naniteHundredths: BigNumberInstance;
-    nanitesGenerated: BigNumberInstance;
-    nanitesHandGenerated: BigNumberInstance;
-    nanitesPerSecond: BigNumberInstance;
-  };
-  Nourriture: {
-    naniteHundredths: BigNumberInstance;
-    nanitesGenerated: BigNumberInstance;
-    nanitesHandGenerated: BigNumberInstance;
-    nanitesPerSecond: BigNumberInstance;
-  };
   eras: Eras;
   currentEra: Era;
   tooltipActive: boolean;
   tooltipTop: string;
   tooltipBuilding: number;
-};
+} & StateResources;
 
 const defaultState: State = {
   lastTickTime: null,
   buildingsOwned: 0,
   Bois: {
-    naniteHundredths: BigNumber(0),
-    nanitesGenerated: BigNumber(0),
-    nanitesHandGenerated: BigNumber(1000000),
-    nanitesPerSecond: BigNumber(0)
+    hundredths: BigNumber(0),
+    generated: BigNumber(0),
+    handGenerated: BigNumber(1000000),
+    perSecond: BigNumber(0)
   },
   Pierre: {
-    naniteHundredths: BigNumber(0),
-    nanitesGenerated: BigNumber(0),
-    nanitesHandGenerated: BigNumber(0),
-    nanitesPerSecond: BigNumber(0)
+    hundredths: BigNumber(0),
+    generated: BigNumber(0),
+    handGenerated: BigNumber(0),
+    perSecond: BigNumber(0)
   },
   Nourriture: {
-    naniteHundredths: BigNumber(0),
-    nanitesGenerated: BigNumber(0),
-    nanitesHandGenerated: BigNumber(0),
-    nanitesPerSecond: BigNumber(0)
+    hundredths: BigNumber(0),
+    generated: BigNumber(0),
+    handGenerated: BigNumber(0),
+    perSecond: BigNumber(0)
   },
   eras,
   currentEra: eras.StoneAge,
@@ -77,10 +68,10 @@ function deepCloneStateObject(stateObject: State): State {
   return {
     ...stateObject,
     Bois: {
-      naniteHundredths: BigNumber(stateObject.Bois.naniteHundredths),
-      nanitesGenerated: BigNumber(stateObject.Bois.nanitesGenerated),
-      nanitesHandGenerated: BigNumber(stateObject.Bois.nanitesHandGenerated),
-      nanitesPerSecond: BigNumber(stateObject.Bois.nanitesPerSecond)
+      hundredths: BigNumber(stateObject.Bois.hundredths),
+      generated: BigNumber(stateObject.Bois.generated),
+      handGenerated: BigNumber(stateObject.Bois.handGenerated),
+      perSecond: BigNumber(stateObject.Bois.perSecond)
     },
     currentEra: {
       ...stateObject.currentEra,
@@ -175,8 +166,8 @@ export default (state = defaultState, action: any) => {
           .mult(up.owned)
           .mult(timingMultiplier);
 
-        stateClone[up.resourceType].naniteHundredths.plus(nanitesFromBuilding);
-        stateClone[up.resourceType].nanitesGenerated.plus(nanitesFromBuilding);
+        stateClone[up.resourceType].hundredths.plus(nanitesFromBuilding);
+        stateClone[up.resourceType].generated.plus(nanitesFromBuilding);
       });
 
       stateClone.lastTickTime = tickTime;
@@ -190,9 +181,9 @@ export default (state = defaultState, action: any) => {
 
       action.payload += clickUpgrades;
 
-      stateClone.Bois.naniteHundredths.plus(action.payload);
-      stateClone.Bois.nanitesGenerated.plus(action.payload);
-      stateClone.Bois.nanitesHandGenerated.plus(action.payload);
+      stateClone.Bois.hundredths.plus(action.payload);
+      stateClone.Bois.generated.plus(action.payload);
+      stateClone.Bois.handGenerated.plus(action.payload);
 
       return stateClone;
 
@@ -208,11 +199,9 @@ export default (state = defaultState, action: any) => {
       b.owned++;
 
       stateClone.buildingsOwned++;
-      stateClone.Bois.nanitesPerSecond.plus(BigNumber(b.baseNHPT));
+      stateClone.Bois.perSecond.plus(BigNumber(b.baseNHPT));
 
-      stateClone.Bois.naniteHundredths.minus(
-        BigNumber(b.priceOfNext).mult(100)
-      );
+      stateClone.Bois.hundredths.minus(BigNumber(b.priceOfNext).mult(100));
 
       const multiplier = Math.floor(Math.pow(1.15, b.owned) * 100);
       b.priceOfNext = BigNumber(b.basePrice)

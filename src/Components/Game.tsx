@@ -23,15 +23,12 @@ class Game extends Component<Props> {
 
     props.loadGame();
     window.setInterval(() => props.tick(), 100);
-    window.setInterval(
-      () => updateTitleTag(this.props.Bois.naniteHundredths),
-      5000
-    );
+    window.setInterval(() => updateTitleTag(this.props.Bois.hundredths), 5000);
     window.setInterval(() => props.saveGame(), 60000);
   }
 
   displayNaniteValue() {
-    const wholeNanites = BigNumber(this.props.Bois.naniteHundredths).div(100);
+    const wholeNanites = BigNumber(this.props.Bois.hundredths).div(100);
     return prettifyNumber(wholeNanites, true);
   }
 
@@ -45,7 +42,7 @@ class Game extends Component<Props> {
           <Building
             key={b.id}
             building={b}
-            nanites={this.props.Bois.naniteHundredths}
+            nanites={this.props.Bois.hundredths}
             buyBuilding={this.props.buyBuilding}
             moveTooltip={this.props.moveTooltip}
           />
@@ -77,11 +74,9 @@ class Game extends Component<Props> {
       >
         <div style={{ backgroundColor: "green", height: "8vh", width: "100%" }}>
           <Stats
-            nanites={this.props.Bois.naniteHundredths}
-            nanitesPerSecond={this.props.Bois.nanitesPerSecond}
-            generatedNanites={this.props.Bois.nanitesGenerated}
-            handGeneratedNanites={this.props.Bois.nanitesHandGenerated}
-            buildingsOwned={this.props.buildingsOwned}
+            bois={this.props.Bois}
+            pierre={this.props.Pierre}
+            nourriture={this.props.Nourriture}
           />
         </div>
         <div
@@ -105,9 +100,7 @@ class Game extends Component<Props> {
             <div id="banner">
               <h2>{this.displayNaniteValue()} stères de bois</h2>
               <small>
-                {prettifyNumber(
-                  BigNumber(this.props.Bois.nanitesPerSecond).div(10)
-                )}{" "}
+                {prettifyNumber(BigNumber(this.props.Bois.perSecond).div(10))}{" "}
                 par seconde
               </small>
             </div>
@@ -130,7 +123,7 @@ class Game extends Component<Props> {
               position: "relative"
             }}
           >
-            <div style={{ minHeight: "50%"}}>
+            <div style={{ minHeight: "50%" }}>
               <h2 className="text-center" style={{ marginTop: 0 }}>
                 Buildings
               </h2>
@@ -175,26 +168,6 @@ class Game extends Component<Props> {
   }
 }
 
-// Game.propTypes = {
-//   naniteHundredths: PropTypes.object.isRequired,
-//   nanitesPerSecond: PropTypes.object.isRequired,
-//   nanitesGenerated: PropTypes.object.isRequired,
-//   nanitesHandGenerated: PropTypes.object.isRequired,
-//   buildingsOwned: PropTypes.number.isRequired,
-//   buildings: PropTypes.arrayOf(PropTypes.object).isRequired,
-//   tooltipActive: PropTypes.bool.isRequired,
-//   tooltipTop: PropTypes.string.isRequired,
-//   tooltipBuilding: PropTypes.number.isRequired,
-//   loadGame: PropTypes.func.isRequired,
-//   saveGame: PropTypes.func.isRequired,
-//   clearSave: PropTypes.func.isRequired,
-//   tick: PropTypes.func.isRequired,
-//   addNanites: PropTypes.func.isRequired,
-//   buyBuilding: PropTypes.func.isRequired,
-//   hideTooltip: PropTypes.func.isRequired,
-//   moveTooltip: PropTypes.func.isRequired
-// };
-
 type Props = {
   Bois: State["Bois"];
   Pierre: State["Pierre"];
@@ -208,12 +181,6 @@ type Props = {
 
 const mapStateToProps = (state: State) => {
   return {
-    // naniteHundredths: state.naniteHundredths,
-    // nanitesPerSecond: state.nanitesPerSecond,
-    // nanitesGenerated: state.nanitesGenerated,
-    // nanitesHandGenerated: state.nanitesHandGenerated,
-    // buildingsOwned: state.buildingsOwned,
-    // buildings: state.buildings,
     Bois: state.Bois,
     Pierre: state.Pierre,
     Nourriture: state.Nourriture,

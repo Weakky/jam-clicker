@@ -4,22 +4,22 @@ const defaultState = {
     lastTickTime: null,
     buildingsOwned: 0,
     Bois: {
-        naniteHundredths: BigNumber(0),
-        nanitesGenerated: BigNumber(0),
-        nanitesHandGenerated: BigNumber(1000000),
-        nanitesPerSecond: BigNumber(0)
+        hundredths: BigNumber(0),
+        generated: BigNumber(0),
+        handGenerated: BigNumber(1000000),
+        perSecond: BigNumber(0)
     },
     Pierre: {
-        naniteHundredths: BigNumber(0),
-        nanitesGenerated: BigNumber(0),
-        nanitesHandGenerated: BigNumber(0),
-        nanitesPerSecond: BigNumber(0)
+        hundredths: BigNumber(0),
+        generated: BigNumber(0),
+        handGenerated: BigNumber(0),
+        perSecond: BigNumber(0)
     },
     Nourriture: {
-        naniteHundredths: BigNumber(0),
-        nanitesGenerated: BigNumber(0),
-        nanitesHandGenerated: BigNumber(0),
-        nanitesPerSecond: BigNumber(0)
+        hundredths: BigNumber(0),
+        generated: BigNumber(0),
+        handGenerated: BigNumber(0),
+        perSecond: BigNumber(0)
     },
     eras,
     currentEra: eras.StoneAge,
@@ -34,10 +34,10 @@ function deepCloneStateObject(stateObject) {
     let upgrades = [];
     stateObject.currentEra.upgrades.forEach(b => upgrades.push(deepCloneBuildingObject(b)));
     return Object.assign(Object.assign({}, stateObject), { Bois: {
-            naniteHundredths: BigNumber(stateObject.Bois.naniteHundredths),
-            nanitesGenerated: BigNumber(stateObject.Bois.nanitesGenerated),
-            nanitesHandGenerated: BigNumber(stateObject.Bois.nanitesHandGenerated),
-            nanitesPerSecond: BigNumber(stateObject.Bois.nanitesPerSecond)
+            hundredths: BigNumber(stateObject.Bois.hundredths),
+            generated: BigNumber(stateObject.Bois.generated),
+            handGenerated: BigNumber(stateObject.Bois.handGenerated),
+            perSecond: BigNumber(stateObject.Bois.perSecond)
         }, currentEra: Object.assign(Object.assign({}, stateObject.currentEra), { upgrades: upgrades }) });
 }
 export default (state = defaultState, action) => {
@@ -103,8 +103,8 @@ export default (state = defaultState, action) => {
                 const nanitesFromBuilding = BigNumber(up.baseNHPT)
                     .mult(up.owned)
                     .mult(timingMultiplier);
-                stateClone[up.resourceType].naniteHundredths.plus(nanitesFromBuilding);
-                stateClone[up.resourceType].nanitesGenerated.plus(nanitesFromBuilding);
+                stateClone[up.resourceType].hundredths.plus(nanitesFromBuilding);
+                stateClone[up.resourceType].generated.plus(nanitesFromBuilding);
             });
             stateClone.lastTickTime = tickTime;
             return stateClone;
@@ -113,9 +113,9 @@ export default (state = defaultState, action) => {
                 return acc + bld.baseUpgradeClick.val() * bld.owned;
             }, 0);
             action.payload += clickUpgrades;
-            stateClone.Bois.naniteHundredths.plus(action.payload);
-            stateClone.Bois.nanitesGenerated.plus(action.payload);
-            stateClone.Bois.nanitesHandGenerated.plus(action.payload);
+            stateClone.Bois.hundredths.plus(action.payload);
+            stateClone.Bois.generated.plus(action.payload);
+            stateClone.Bois.handGenerated.plus(action.payload);
             return stateClone;
         case "BUY_BUILDING":
             let b = stateClone.currentEra.upgrades.find(bld => bld.id === action.payload);
@@ -124,8 +124,8 @@ export default (state = defaultState, action) => {
             }
             b.owned++;
             stateClone.buildingsOwned++;
-            stateClone.Bois.nanitesPerSecond.plus(BigNumber(b.baseNHPT));
-            stateClone.Bois.naniteHundredths.minus(BigNumber(b.priceOfNext).mult(100));
+            stateClone.Bois.perSecond.plus(BigNumber(b.baseNHPT));
+            stateClone.Bois.hundredths.minus(BigNumber(b.priceOfNext).mult(100));
             const multiplier = Math.floor(Math.pow(1.15, b.owned) * 100);
             b.priceOfNext = BigNumber(b.basePrice)
                 .mult(multiplier)

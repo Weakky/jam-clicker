@@ -1,36 +1,36 @@
 import React from "react";
-import PropTypes from "prop-types";
 import BigNumber from "big-number";
-
 import { prettifyNumber } from "../Utilities/utilities";
-
-function Stats(props) {
-  return (
-    <div
-      style={{
-        display: "flex",
-        flex: 1,
-        flexDirection: "row",
-        justifyContent: "space-evenly",
-        alignItems: "center",
-        color: "black"
-      }}
-    >
-      <span>Bois: {prettifyNumber(BigNumber(props.nanites).div(100))}</span>
-      <span>
-        Bois généré par seconde:{" "}
-        {prettifyNumber(BigNumber(props.nanitesPerSecond).div(10))}
-      </span>
-    </div>
-  );
-}
-
-Stats.propTypes = {
-  nanites: PropTypes.object.isRequired,
-  nanitesPerSecond: PropTypes.object.isRequired,
-  generatedNanites: PropTypes.object.isRequired,
-  handGeneratedNanites: PropTypes.object.isRequired,
-  buildingsOwned: PropTypes.number.isRequired
+const Stats = props => {
+    return (React.createElement("div", { style: {
+            display: "flex",
+            flex: 1,
+            flexDirection: "row",
+            justifyContent: "space-evenly",
+            alignItems: "center",
+            color: "black"
+        } },
+        React.createElement("span", null,
+            "Bois: ",
+            prettifyNumber(BigNumber(props.bois.hundredths).div(100)),
+            " ",
+            "(",
+            prettifyNumber(BigNumber(props.bois.perSecond).div(10)),
+            "/s)"),
+        React.createElement("span", null,
+            "Pierre:",
+            " ",
+            prettifyNumber(BigNumber(props.pierre.hundredths).div(100)),
+            " (",
+            prettifyNumber(BigNumber(props.pierre.perSecond).div(10)),
+            "/s)"),
+        React.createElement("span", null,
+            "Nourriture:",
+            " ",
+            prettifyNumber(BigNumber(props.nourriture.hundredths).div(100)),
+            " ",
+            "(",
+            prettifyNumber(BigNumber(props.nourriture.perSecond).div(10)),
+            "/s)")));
 };
-
 export default Stats;

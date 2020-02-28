@@ -11,18 +11,18 @@ class Game extends Component {
         super(props);
         props.loadGame();
         window.setInterval(() => props.tick(), 100);
-        window.setInterval(() => updateTitleTag(this.props.Bois.naniteHundredths), 5000);
+        window.setInterval(() => updateTitleTag(this.props.Bois.hundredths), 5000);
         window.setInterval(() => props.saveGame(), 60000);
     }
     displayNaniteValue() {
-        const wholeNanites = BigNumber(this.props.Bois.naniteHundredths).div(100);
+        const wholeNanites = BigNumber(this.props.Bois.hundredths).div(100);
         return prettifyNumber(wholeNanites, true);
     }
     render() {
         const tooltipBuilding = this.props.buildings.find(b => b.id === this.props.tooltipBuilding);
         const renderBuildings = () => {
             return this.props.buildings.map(b => {
-                return (React.createElement(Building, { key: b.id, building: b, nanites: this.props.Bois.naniteHundredths, buyBuilding: this.props.buyBuilding, moveTooltip: this.props.moveTooltip }));
+                return (React.createElement(Building, { key: b.id, building: b, nanites: this.props.Bois.hundredths, buyBuilding: this.props.buyBuilding, moveTooltip: this.props.moveTooltip }));
             });
         };
         const renderTooltip = () => {
@@ -39,7 +39,7 @@ class Game extends Component {
                 width: "100vw"
             } },
             React.createElement("div", { style: { backgroundColor: "green", height: "8vh", width: "100%" } },
-                React.createElement(Stats, { nanites: this.props.Bois.naniteHundredths, nanitesPerSecond: this.props.Bois.nanitesPerSecond, generatedNanites: this.props.Bois.nanitesGenerated, handGeneratedNanites: this.props.Bois.nanitesHandGenerated, buildingsOwned: this.props.buildingsOwned })),
+                React.createElement(Stats, { bois: this.props.Bois, pierre: this.props.Pierre, nourriture: this.props.Nourriture })),
             React.createElement("div", { style: {
                     backgroundColor: "yellow",
                     display: "block",
@@ -59,7 +59,7 @@ class Game extends Component {
                             this.displayNaniteValue(),
                             " st\u00E8res de bois"),
                         React.createElement("small", null,
-                            prettifyNumber(BigNumber(this.props.Bois.nanitesPerSecond).div(10)),
+                            prettifyNumber(BigNumber(this.props.Bois.perSecond).div(10)),
                             " ",
                             "par seconde")),
                     React.createElement("div", { id: "bigNanite", style: { margin: "50px auto 0" }, onClick: () => this.props.addNanites(100) },
@@ -69,11 +69,10 @@ class Game extends Component {
                         display: "inline-block",
                         width: "50%",
                         verticalAlign: "middle",
-                        fontSize: 0,
                         height: "100%",
                         position: "relative"
                     } },
-                    React.createElement("div", { style: { minHeight: "50%", fontSize: 0 } },
+                    React.createElement("div", { style: { minHeight: "50%" } },
                         React.createElement("h2", { className: "text-center", style: { marginTop: 0 } }, "Buildings"),
                         React.createElement("div", { style: {
                                 display: "flex",
@@ -81,6 +80,7 @@ class Game extends Component {
                                 backgroundColor: "black",
                                 overflowY: "scroll"
                             }, onMouseLeave: () => this.props.hideTooltip() }, renderBuildings())),
+                    renderTooltip(),
                     React.createElement("div", { style: { minHeight: "50%", fontSize: 0 } },
                         React.createElement("h2", { className: "text-center", style: { marginTop: 0 } }, "Events"),
                         React.createElement("div", { style: {
@@ -94,12 +94,6 @@ class Game extends Component {
 }
 const mapStateToProps = (state) => {
     return {
-        // naniteHundredths: state.naniteHundredths,
-        // nanitesPerSecond: state.nanitesPerSecond,
-        // nanitesGenerated: state.nanitesGenerated,
-        // nanitesHandGenerated: state.nanitesHandGenerated,
-        // buildingsOwned: state.buildingsOwned,
-        // buildings: state.buildings,
         Bois: state.Bois,
         Pierre: state.Pierre,
         Nourriture: state.Nourriture,
