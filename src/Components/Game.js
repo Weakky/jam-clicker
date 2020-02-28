@@ -20,9 +20,18 @@ class Game extends Component {
     }
     render() {
         const tooltipBuilding = this.props.buildings.find(b => b.id === this.props.tooltipBuilding);
-        const renderBuildings = () => {
-            return this.props.buildings.map(b => {
-                return (React.createElement(Building, { key: b.id, building: b, nanites: this.props.Bois.hundredths, buyBuilding: this.props.buyBuilding, moveTooltip: this.props.moveTooltip }));
+        const renderTools = () => {
+            return this.props.buildings
+                .filter(b => b.type === "tool")
+                .map(b => {
+                return (React.createElement(Building, { key: b.id, building: b, state: this.props.state, buyBuilding: this.props.buyBuilding, moveTooltip: this.props.moveTooltip }));
+            });
+        };
+        const renderEnhancements = () => {
+            return this.props.buildings
+                .filter(b => b.type === "event")
+                .map(b => {
+                return (React.createElement(Building, { key: b.id, building: b, state: this.props.state, buyBuilding: this.props.buyBuilding, moveTooltip: this.props.moveTooltip }));
             });
         };
         const renderTooltip = () => {
@@ -38,7 +47,7 @@ class Game extends Component {
                 height: "100vh",
                 width: "100vw"
             } },
-            React.createElement("div", { style: { backgroundColor: "green", height: "8vh", width: "100%" } },
+            React.createElement("div", { id: "upperPanel" },
                 React.createElement(Stats, { bois: this.props.Bois, pierre: this.props.Pierre, nourriture: this.props.Nourriture })),
             React.createElement("div", { style: {
                     backgroundColor: "yellow",
@@ -49,9 +58,8 @@ class Game extends Component {
                 React.createElement("div", { style: {
                         display: "inline-block",
                         width: "50%",
-                        backgroundColor: "blue",
+                        background: "linear-gradient(#37418a, #9198e5,#37418a)",
                         verticalAlign: "middle",
-                        fontSize: 0,
                         height: "100%"
                     } },
                     React.createElement("div", { id: "banner" },
@@ -62,8 +70,7 @@ class Game extends Component {
                             prettifyNumber(BigNumber(this.props.Bois.perSecond).div(10)),
                             " ",
                             "par seconde")),
-                    React.createElement("div", { id: "bigNanite", style: { margin: "50px auto 0" }, onClick: () => this.props.addNanites(100) },
-                        React.createElement("h1", { className: "text-center" }, "Imagine an image of a nanite here"))),
+                    React.createElement("div", { id: "bigNanite", style: { margin: "50px auto 0" }, onClick: () => this.props.addNanites(100) }, "''")),
                 React.createElement("div", { style: {
                         backgroundColor: "orange",
                         display: "inline-block",
@@ -73,22 +80,21 @@ class Game extends Component {
                         position: "relative"
                     } },
                     React.createElement("div", { style: { minHeight: "50%" } },
-                        React.createElement("h2", { className: "text-center", style: { marginTop: 0 } }, "Buildings"),
+                        React.createElement("h2", { className: "text-center", style: { marginTop: 0 } }, "Outils"),
                         React.createElement("div", { style: {
                                 display: "flex",
                                 flexDirection: "column",
                                 backgroundColor: "black",
                                 overflowY: "scroll"
-                            }, onMouseLeave: () => this.props.hideTooltip() }, renderBuildings())),
-                    renderTooltip(),
-                    React.createElement("div", { style: { minHeight: "50%", fontSize: 0 } },
-                        React.createElement("h2", { className: "text-center", style: { marginTop: 0 } }, "Events"),
+                            }, onMouseLeave: () => this.props.hideTooltip() }, renderTools())),
+                    React.createElement("div", { style: { minHeight: "50%" } },
+                        React.createElement("h2", { className: "text-center", style: { marginTop: 0 } }, "Am\u00E9liorations"),
                         React.createElement("div", { style: {
                                 display: "flex",
                                 flexDirection: "column",
                                 backgroundColor: "black",
                                 overflowY: "scroll"
-                            }, onMouseLeave: () => this.props.hideTooltip() }, renderBuildings())))),
+                            }, onMouseLeave: () => this.props.hideTooltip() }, renderEnhancements())))),
             React.createElement("div", { style: { backgroundColor: "purple", width: "100%", height: "8vh" } })));
     }
 }
@@ -101,10 +107,11 @@ const mapStateToProps = (state) => {
         buildingsOwned: state.buildingsOwned,
         tooltipActive: state.tooltipActive,
         tooltipTop: state.tooltipTop,
-        tooltipBuilding: state.tooltipBuilding
+        tooltipBuilding: state.tooltipBuilding,
+        state
     };
 };
-const mapDispatchToProps = (dispatch) => {
+export const mapDispatchToProps = (dispatch) => {
     return {
         loadGame: () => dispatch(loadGame()),
         saveGame: () => dispatch(saveGame()),

@@ -7,6 +7,11 @@ body {
   color: #080;
   user-select: none; }
 
+#upperPanel {
+  background: linear-gradient(0.25turn, #378a84, #9198e5, #378a84);
+  height: 8vh;
+  width: 100%; }
+
 #App {
   display: flex;
   flex: 1; }
@@ -15,79 +20,103 @@ body {
   display: flex;
   flex-direction: column; }
 
-#leftPanel {
+/*#leftPanel {
   height: 100%;
-  width: 16.66667%;
+  width: 2 / 12 * 100%;
   float: left;
   position: relative;
-  background-size: cover; }
-  @media (max-width: 768px) {
-    #leftPanel {
-      width: 100%; } }
+  background-size: cover;
 
+  @media (max-width: 768px) {
+    width: 100%;
+  }
+}*/
 #banner {
   width: 100%;
   background-color: rgba(0, 0, 0, 0.7);
   text-align: center; }
 
 #bigNanite {
-  width: 250px;
-  height: 250px;
-  background-color: rgba(0, 0, 0, 0.7);
-  border: 1px solid #080;
+  width: 600px;
+  height: 600px;
+  background-image: url("Ressources/planet/planete2-0.svg");
+  background-repeat: no-repeat;
   padding: 0.4em;
   cursor: pointer;
   margin-top: 50px; }
   #bigNanite:hover {
-    width: 275px;
-    height: 275px; }
+    width: 660px;
+    height: 660px; }
   #bigNanite:active {
-    width: 250px;
-    height: 250px; }
+    width: 600px;
+    height: 600px; }
 
-#centerPanel {
+/*#centerPanel {
   display: flex;
   flex-direction: column;
   align-items: center;
   height: 100%;
-  width: 58.33333%;
+  width: $centerWidth;
   float: left;
   padding: 1em;
-  background: linear-gradient(#e66465, #9198e5); }
-  @media (max-width: 768px) {
-    #centerPanel {
-      height: auto;
-      width: 100%; } }
+  background: linear-gradient(#e66465, #9198e5,#e66465);
 
-#rightPanel {
+  @media (max-width: 768px) {
+    height: auto;
+    width: 100%;
+  }
+}*/
+/*#rightPanel {
   height: 100%;
-  width: 25%;
+  width: $rightWidth;
   float: left;
   padding: 1em;
   overflow-x: visible;
-  overflow-y: auto; }
-  @media (max-width: 768px) {
-    #rightPanel {
-      height: auto;
-      width: 100%; } }
+  overflow-y: auto;
 
+  @media (max-width: 768px) {
+    height: auto;
+    width: 100%;
+  }
+}*/
 #tooltip {
   width: 300px;
   position: fixed;
   right: 25%;
   border: 1px solid #999;
   padding: 0.5em;
-  background-color: rgba(0, 0, 0, 0.8);
-  color: #0c0; }
+  background-color: rgba(41, 37, 161, 0.8);
+  color: #ffd70f; }
   #tooltip .description {
-    font-size: 8px; }
+    font-size: 15px; }
+
+#wood {
+  position: absolute;
+  background-repeat: no-repeat;
+  background-image: url("Ressources/primary/wood.svg");
+  height: 40px;
+  width: 100%; }
+
+#stone {
+  position: absolute;
+  background-repeat: no-repeat;
+  background-image: url("Ressources/primary/stone.svg");
+  height: 40px;
+  width: 100%; }
+
+#food {
+  position: absolute;
+  background-repeat: no-repeat;
+  background-image: url("Ressources/primary/food.svg");
+  height: 40px;
+  width: 100%; }
 
 .building {
   display: flex;
   flex: 1;
+  align-items: center;
   flex-direction: column;
   justify-content: center;
-  align-items: space-between;
   padding: 1em;
   border: 1px solid #080; }
   .building:hover {
