@@ -3,7 +3,7 @@
 $themeGreen: #080;
 $highlightGreen: #0c0;
 $transBG: rgba(0, 0, 0, 0.7);
-$naniteSize: 250px;
+$naniteSize: 600px;
 $engorgedNaniteSize: $naniteSize * 1.1;
 $naniteOffset: $naniteSize / 2;
 $engorgedOffset: $engorgedNaniteSize / 2;
@@ -20,6 +20,14 @@ body {
   user-select: none;
 }
 
+#upperPanel {
+  background: linear-gradient(0.25turn, #378a84, #9198e5, #378a84);
+  height: 8vh;
+  width: 100%;
+  //border: 2px solid red;
+  //border-radius: 5px;
+}
+
 #App {
   display: flex;
   flex: 1;
@@ -31,7 +39,7 @@ body {
   flex-direction: column;
 }
 
-#leftPanel {
+/*#leftPanel {
   height: 100%;
   width: 2 / 12 * 100%;
   float: left;
@@ -41,7 +49,7 @@ body {
   @media (max-width: 768px) {
     width: 100%;
   }
-}
+}*/
 
 #banner {
   width: 100%;
@@ -52,8 +60,11 @@ body {
 #bigNanite {
   width: $naniteSize;
   height: $naniteSize;
-  background-color: $transBG;
-  border: 1px solid $themeGreen;
+  background-image: url("Ressources/planet/planete2-0.svg");
+  //background-size: 400px 400px;
+  //background-color: $transBG;
+  //border: 1px solid $themeGreen;
+  background-repeat: no-repeat;
   padding: 0.4em;
   cursor: pointer;
   margin-top: 50px;
@@ -86,7 +97,7 @@ body {
   // }
 }
 
-#centerPanel {
+/*#centerPanel {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -94,15 +105,15 @@ body {
   width: $centerWidth;
   float: left;
   padding: 1em;
-  background: linear-gradient(#e66465, #9198e5);
+  background: linear-gradient(#e66465, #9198e5,#e66465);
 
   @media (max-width: 768px) {
     height: auto;
     width: 100%;
   }
-}
+}*/
 
-#rightPanel {
+/*#rightPanel {
   height: 100%;
   width: $rightWidth;
   float: left;
@@ -114,7 +125,7 @@ body {
     height: auto;
     width: 100%;
   }
-}
+}*/
 
 #tooltip {
   width: 300px;
@@ -122,11 +133,11 @@ body {
   right: $rightWidth;
   border: 1px solid #999;
   padding: 0.5em;
-  background-color: rgba(0, 0, 0, 0.8);
-  color: $highlightGreen;
+  background-color: rgba(41, 37, 161, 0.8);
+  color: #ffd70f;
 
   .description {
-    font-size: 8px;
+    font-size: 15px;
   }
 }
 
@@ -134,12 +145,37 @@ body {
   // padding-bottom: 200px;
 }
 
+#wood {
+  position: absolute;
+  background-repeat: no-repeat;
+  background-image: url("Ressources/primary/wood.svg");
+  height: 40px;
+  width: 100%;
+}
+
+#stone {
+  position: absolute;
+  background-repeat: no-repeat;
+  background-image: url("Ressources/primary/stone.svg");
+  height: 40px;
+  width: 100%;
+}
+
+#food {
+  position: absolute;
+  background-repeat: no-repeat;
+  background-image: url("Ressources/primary/food.svg");
+  height: 40px;
+  width: 100%;
+}
+
 .building {
   display: flex;
   flex: 1;
+  align-items: center;
   flex-direction: column;
   justify-content: center;
-  align-items: space-between;
+  //align-items: space-between;
   padding: 1em;
   border: 1px solid $themeGreen;
 
