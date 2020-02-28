@@ -2,7 +2,7 @@ import BigNumber, { BigNumberInstance } from "big-number";
 import { updateTitleTag } from "../Utilities/utilities";
 import { eras, Eras, Era, Upgrade } from "../game-data";
 
-type State = {
+export type State = {
   lastTickTime: number | null;
   buildingsOwned: number;
   Bois: {
