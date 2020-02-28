@@ -2,6 +2,8 @@
   "compilerOptions": {
     "allowJs": true,
     "strict": true,
-    "jsx": "react"
-  }
+    "jsx": "react",
+    "target": "ES2017"
+  },
+  "include": ["./src/**/*.ts"]
 }

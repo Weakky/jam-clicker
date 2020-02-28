@@ -122,7 +122,7 @@ class Game extends Component {
             }}
           >
             <div style={{ flex: 1 }}>
-              <h2 className="text-center">Buildings</h2>
+              <h2 className="text-center">Outils</h2>
               <div
                 style={{
                   display: "flex",
