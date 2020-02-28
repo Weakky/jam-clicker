@@ -23,20 +23,23 @@ const Stats: React.FC<Props> = props => {
         color: "black"
       }}
     >
-      <span>
+      <span >
         Bois: {prettifyNumber(BigNumber(props.bois.hundredths).div(100))}{" "}
         ({prettifyNumber(BigNumber(props.bois.perSecond).div(10))}/s)
+          <div id={"wood"}></div>
       </span>
       <span>
         Pierre:{" "}
         {prettifyNumber(BigNumber(props.pierre.hundredths).div(100))} (
         {prettifyNumber(BigNumber(props.pierre.perSecond).div(10))}/s)
+          <div id={"stone"}></div>
       </span>
       <span>
         Nourriture:{" "}
         {prettifyNumber(BigNumber(props.nourriture.hundredths).div(100))}{" "}
         ({prettifyNumber(BigNumber(props.nourriture.perSecond).div(10))}
         /s)
+          <div id={"food"}></div>
       </span>
     </div>
   );
