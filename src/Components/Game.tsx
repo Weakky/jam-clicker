@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import BigNumber from "big-number";
-
 import Building from "./Building";
 import Stats from "./Stats";
 import Tooltip from "./Tooltip";
@@ -127,12 +126,11 @@ class Game extends Component<Props> {
               display: "inline-block",
               width: "50%",
               verticalAlign: "middle",
-              fontSize: 0,
               height: "100%",
               position: "relative"
             }}
           >
-            <div style={{ minHeight: "50%", fontSize: 0 }}>
+            <div style={{ minHeight: "50%"}}>
               <h2 className="text-center" style={{ marginTop: 0 }}>
                 Buildings
               </h2>
@@ -148,6 +146,7 @@ class Game extends Component<Props> {
                 {renderBuildings()}
               </div>
             </div>
+            {renderTooltip()}
             {
               <div style={{ minHeight: "50%", fontSize: 0 }}>
                 <h2 className="text-center" style={{ marginTop: 0 }}>

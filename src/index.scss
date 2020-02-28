@@ -118,7 +118,7 @@ body {
 
 #tooltip {
   width: 300px;
-  position: absolute;
+  position: fixed;
   right: $rightWidth;
   border: 1px solid #999;
   padding: 0.5em;
