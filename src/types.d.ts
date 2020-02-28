@@ -5,6 +5,7 @@ declare module 'big-number' {
     minus(...args: any[]): BigNumberInstance
     mult(...args: any[]): BigNumberInstance
     div(...args: any[]): BigNumberInstance
+    lte(...args: any[]): boolean
   }
 
   function BigNumber(val: number | BigNumberInstance): BigNumberInstance

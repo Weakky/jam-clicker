@@ -26,6 +26,17 @@ type ErasType = "StoneAge" | "MiddleAge";
 
 export type UpgradeType = "tool" | "event";
 
+type Cost = {
+  basePrice: BigNumberInstance;
+  priceOfNext: BigNumberInstance;
+  baseHundredthsPerTick: BigNumberInstance; //NHPT = Nanite Hundreths Per Tick
+  baseUpgradeClick: BigNumberInstance;
+};
+
+type CostPerResource = {
+  [P in ResourceTypes]?: Cost;
+};
+
 export type Upgrade = {
   id: number;
   type: UpgradeType;
@@ -33,11 +44,8 @@ export type Upgrade = {
   plural: string;
   description: string;
   owned: number;
-  resourceType: ResourceTypes;
-  basePrice: BigNumberInstance;
-  priceOfNext: BigNumberInstance;
-  baseNHPT: BigNumberInstance; //NHPT = Nanite Hundreths Per Tick
-  baseUpgradeClick: BigNumberInstance;
+  info: CostPerResource;
+  getNextEra?: () => Era;
 };
 export type UpgradesPerEras = Record<ErasType, Upgrade[]>;
 
@@ -50,138 +58,299 @@ export const upgradesPerEras: UpgradesPerEras = {
       plural: "Haches",
       description: "Outil pour couper du bois",
       owned: 0,
-      resourceType: "Nourriture",
-      basePrice: BigNumber(15),
-      priceOfNext: BigNumber(15),
-      baseNHPT: BigNumber(1), //NHPT = Nanite Hundreths Per Tick
-      baseUpgradeClick: BigNumber(100)
+      // resourceType: "Bois",
+      info: {
+        Bois: {
+          basePrice: BigNumber(15),
+          priceOfNext: BigNumber(15),
+          baseHundredthsPerTick: BigNumber(0), //NHPT = Nanite Hundreths Per Tick
+          baseUpgradeClick: BigNumber(100)
+        }
+      }
     },
     {
       id: 2,
       type: "tool",
       name: "Pioche",
       plural: "Pioches",
-      description:
-        "Nanites infect a humanoid host, overpowering will and creating new nanites",
+      description: "Outil pour récolter de la pierre",
       owned: 0,
-      resourceType: "Pierre",
-      basePrice: BigNumber(100),
-      priceOfNext: BigNumber(100),
-      baseNHPT: BigNumber(10),
-      baseUpgradeClick: BigNumber(100)
+      // resourceType: "Pierre",
+      info: {
+        Bois: {
+          basePrice: BigNumber(15),
+          priceOfNext: BigNumber(15),
+          baseHundredthsPerTick: BigNumber(0), //NHPT = Nanite Hundreths Per Tick
+          baseUpgradeClick: BigNumber(0)
+        },
+        Pierre: {
+          basePrice: BigNumber(0),
+          priceOfNext: BigNumber(0),
+          baseHundredthsPerTick: BigNumber(0), //NHPT = Nanite Hundreths Per Tick
+          baseUpgradeClick: BigNumber(100)
+        }
+      }
     },
     {
       id: 3,
       type: "tool",
       name: "Lance",
       plural: "Lances",
-      description:
-        "An entire manufactoring facility devoted to creation of new nanites",
+      description: "Outil pour récolter de la nourriture",
       owned: 0,
-      resourceType: "Nourriture",
-      basePrice: BigNumber(1100),
-      priceOfNext: BigNumber(1100),
-      baseNHPT: BigNumber(80),
-      baseUpgradeClick: BigNumber(0)
+      // resourceType: "Nourriture",
+      info: {
+        Bois: {
+          baseHundredthsPerTick: BigNumber(0), //NHPT = Nanite Hundreths Per Tick
+          baseUpgradeClick: BigNumber(0),
+          basePrice: BigNumber(15),
+          priceOfNext: BigNumber(15)
+        },
+        Nourriture: {
+          basePrice: BigNumber(0),
+          priceOfNext: BigNumber(0),
+          baseHundredthsPerTick: BigNumber(0), //NHPT = Nanite Hundreths Per Tick
+          baseUpgradeClick: BigNumber(100)
+        }
+      }
     },
     {
       id: 4,
-      type: "tool",
+      type: "event",
       name: "Cabane en bois",
       plural: "Cabane en bois",
-      description:
-        "An entire manufactoring facility devoted to creation of new nanites",
+      description: "Récolte de bois automatisée",
       owned: 0,
-      resourceType: "Bois",
-      basePrice: BigNumber(1100),
-      priceOfNext: BigNumber(1100),
-      baseNHPT: BigNumber(80),
-      baseUpgradeClick: BigNumber(0)
+      // resourceType: "Bois",
+      info: {
+        Bois: {
+          basePrice: BigNumber(1100),
+          priceOfNext: BigNumber(1100),
+          baseHundredthsPerTick: BigNumber(80),
+          baseUpgradeClick: BigNumber(0)
+        }
+      }
+    },
+    {
+      id: 8,
+      type: "event",
+      name: "Château",
+      plural: "Châteaux",
+      description: "Passage au Moyen-Âge",
+      owned: 0,
+      info: {
+        Bois: {
+          basePrice: BigNumber(1100),
+          priceOfNext: BigNumber(1100),
+          baseHundredthsPerTick: BigNumber(80),
+          baseUpgradeClick: BigNumber(0)
+        },
+        Pierre: {
+          basePrice: BigNumber(1100),
+          priceOfNext: BigNumber(1100),
+          baseHundredthsPerTick: BigNumber(80),
+          baseUpgradeClick: BigNumber(0)
+        },
+        Nourriture: {
+          basePrice: BigNumber(1100),
+          priceOfNext: BigNumber(1100),
+          baseHundredthsPerTick: BigNumber(80),
+          baseUpgradeClick: BigNumber(0)
+        }
+      },
+      getNextEra() {
+        return eras.MiddleAge;
+      }
     },
     {
       id: 5,
       type: "tool",
       name: "Mine",
       plural: "Mines",
-      description:
-        "An entire manufactoring facility devoted to creation of new nanites",
+      description: "Récolte de pierre automatisée",
       owned: 0,
-      resourceType: "Pierre",
-      basePrice: BigNumber(1100),
-      priceOfNext: BigNumber(1100),
-      baseNHPT: BigNumber(80),
-      baseUpgradeClick: BigNumber(0)
+      // resourceType: "Pierre",
+      info: {
+        Pierre: {
+          basePrice: BigNumber(1100),
+          priceOfNext: BigNumber(1100),
+          baseHundredthsPerTick: BigNumber(80),
+          baseUpgradeClick: BigNumber(0)
+        }
+      }
     },
     {
       id: 6,
       type: "tool",
       name: "Camp de bûcheron",
       plural: "Camp de bûcherons",
-      description:
-        "An entire manufactoring facility devoted to creation of new nanites",
+      description: "Récolte de bois automatisée",
       owned: 0,
-      resourceType: "Bois",
-      basePrice: BigNumber(1100),
-      priceOfNext: BigNumber(1100),
-      baseNHPT: BigNumber(80),
-      baseUpgradeClick: BigNumber(0)
+      // resourceType: "Bois",
+      info: {
+        Bois: {
+          basePrice: BigNumber(1100),
+          priceOfNext: BigNumber(1100),
+          baseHundredthsPerTick: BigNumber(80),
+          baseUpgradeClick: BigNumber(0)
+        }
+      }
     },
     {
       id: 7,
       type: "tool",
       name: "Elevage",
       plural: "Elevages",
-      description:
-        "An entire manufactoring facility devoted to creation of new nanites",
+      description: "Récolte de nourriture automatisée",
       owned: 0,
-      resourceType: "Nourriture",
-      basePrice: BigNumber(1100),
-      priceOfNext: BigNumber(1100),
-      baseNHPT: BigNumber(80),
-      baseUpgradeClick: BigNumber(0)
+      // resourceType: "Nourriture",
+      info: {
+        Nourriture: {
+          basePrice: BigNumber(1100),
+          priceOfNext: BigNumber(1100),
+          baseHundredthsPerTick: BigNumber(80),
+          baseUpgradeClick: BigNumber(0)
+        }
+      }
     }
   ],
   MiddleAge: [
     {
       id: 1,
       type: "tool",
-      name: "Château",
-      plural: "Châteaux",
+      name: "Scies à main",
+      plural: "Scies à main",
       description: "Outil pour couper du bois",
       owned: 0,
-      resourceType: "Bois",
-      basePrice: BigNumber(15),
-      priceOfNext: BigNumber(15),
-      baseNHPT: BigNumber(1),
-      baseUpgradeClick: BigNumber(0)
+      // resourceType: "Bois",
+      info: {
+        Bois: {
+          basePrice: BigNumber(15),
+          priceOfNext: BigNumber(15),
+          baseHundredthsPerTick: BigNumber(1),
+          baseUpgradeClick: BigNumber(0)
+        }
+      }
     },
     {
       id: 2,
       type: "tool",
-      name: "Mine",
-      plural: "Mines",
+      name: "Pioches en métal",
+      plural: "Piches en métal",
       description:
         "Nanites infect a humanoid host, overpowering will and creating new nanites",
       owned: 0,
-      resourceType: "Bois",
-      basePrice: BigNumber(100),
-      priceOfNext: BigNumber(100),
-      baseNHPT: BigNumber(10),
-      baseUpgradeClick: BigNumber(0)
+      // resourceType: "Bois",
+      info: {
+        Bois: {
+          basePrice: BigNumber(15),
+          priceOfNext: BigNumber(15),
+          baseHundredthsPerTick: BigNumber(1),
+          baseUpgradeClick: BigNumber(0)
+        }
+      }
     },
     {
       id: 3,
       type: "tool",
-      name: "Scierie",
-      plural: "Scieries",
+      name: "Arc",
+      plural: "Arcs",
       description:
         "An entire manufactoring facility devoted to creation of new nanites",
       owned: 0,
-      resourceType: "Bois",
-      basePrice: BigNumber(1100),
-      priceOfNext: BigNumber(1100),
-      baseNHPT: BigNumber(80),
-      baseUpgradeClick: BigNumber(0)
+      info: {
+        Bois: {
+          basePrice: BigNumber(15),
+          priceOfNext: BigNumber(15),
+          baseHundredthsPerTick: BigNumber(1),
+          baseUpgradeClick: BigNumber(0)
+        }
+      }
+    },
+    {
+      id: 4,
+      name: "Armurerie",
+      plural: "Armureries",
+      type: "tool",
+      description:
+        "An entire manufactoring facility devoted to creation of new nanites",
+      owned: 0,
+      info: {
+        Bois: {
+          basePrice: BigNumber(15),
+          priceOfNext: BigNumber(15),
+          baseHundredthsPerTick: BigNumber(1),
+          baseUpgradeClick: BigNumber(0)
+        }
+      }
+    },
+    {
+      id: 5,
+      name: "Scierie",
+      plural: "Scieries",
+      type: "tool",
+      description:
+        "An entire manufactoring facility devoted to creation of new nanites",
+      owned: 0,
+      info: {
+        Bois: {
+          basePrice: BigNumber(15),
+          priceOfNext: BigNumber(15),
+          baseHundredthsPerTick: BigNumber(1),
+          baseUpgradeClick: BigNumber(0)
+        }
+      }
+    },
+    {
+      id: 6,
+      name: "Boucherie",
+      plural: "Boucheries",
+      type: "tool",
+      description:
+        "An entire manufactoring facility devoted to creation of new nanites",
+      owned: 0,
+      info: {
+        Bois: {
+          basePrice: BigNumber(15),
+          priceOfNext: BigNumber(15),
+          baseHundredthsPerTick: BigNumber(1),
+          baseUpgradeClick: BigNumber(0)
+        }
+      }
+    },
+    {
+      id: 7,
+      name: "Artisanat",
+      plural: "Artisanats",
+      type: "event",
+      description:
+        "An entire manufactoring facility devoted to creation of new nanites",
+      owned: 0,
+      info: {
+        Bois: {
+          basePrice: BigNumber(15),
+          priceOfNext: BigNumber(15),
+          baseHundredthsPerTick: BigNumber(1),
+          baseUpgradeClick: BigNumber(0)
+        }
+      }
+    },
+    {
+      id: 8,
+      name: "Decouverte de l'acier",
+      plural: "Decouvertes de l'acier",
+      type: "event",
+      description:
+        "An entire manufactoring facility devoted to creation of new nanites",
+      owned: 0,
+      info: {
+        Bois: {
+          basePrice: BigNumber(15),
+          priceOfNext: BigNumber(15),
+          baseHundredthsPerTick: BigNumber(1),
+          baseUpgradeClick: BigNumber(0)
+        }
+      }
     }
   ]
 };

@@ -35,19 +35,37 @@ class Game extends Component<Props> {
   render() {
     const tooltipBuilding = this.props.buildings.find(
       b => b.id === this.props.tooltipBuilding
-    );
-    const renderBuildings = () => {
-      return this.props.buildings.map(b => {
-        return (
-          <Building
-            key={b.id}
-            building={b}
-            nanites={this.props.Bois.hundredths}
-            buyBuilding={this.props.buyBuilding}
-            moveTooltip={this.props.moveTooltip}
-          />
-        );
-      });
+    )!;
+    const renderTools = () => {
+      return this.props.buildings
+        .filter(b => b.type === "tool")
+        .map(b => {
+          return (
+            <Building
+              key={b.id}
+              building={b}
+              state={this.props.state}
+              buyBuilding={this.props.buyBuilding}
+              moveTooltip={this.props.moveTooltip}
+            />
+          );
+        });
+    };
+
+    const renderEnhancements = () => {
+      return this.props.buildings
+        .filter(b => b.type === "event")
+        .map(b => {
+          return (
+            <Building
+              key={b.id}
+              building={b}
+              state={this.props.state}
+              buyBuilding={this.props.buyBuilding}
+              moveTooltip={this.props.moveTooltip}
+            />
+          );
+        });
     };
     const renderTooltip = () => {
       let tt: any = "";
@@ -125,7 +143,7 @@ class Game extends Component<Props> {
           >
             <div style={{ minHeight: "50%" }}>
               <h2 className="text-center" style={{ marginTop: 0 }}>
-                Buildings
+                Outils
               </h2>
               <div
                 style={{
@@ -136,28 +154,25 @@ class Game extends Component<Props> {
                 }}
                 onMouseLeave={() => this.props.hideTooltip()}
               >
-                {renderBuildings()}
+                {renderTools()}
               </div>
             </div>
-            {renderTooltip()}
-            {
-              <div style={{ minHeight: "50%", fontSize: 0 }}>
-                <h2 className="text-center" style={{ marginTop: 0 }}>
-                  Events
-                </h2>
-                <div
-                  style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    backgroundColor: "black",
-                    overflowY: "scroll"
-                  }}
-                  onMouseLeave={() => this.props.hideTooltip()}
-                >
-                  {renderBuildings()}
-                </div>
+            <div style={{ minHeight: "50%", fontSize: 0 }}>
+              <h2 className="text-center" style={{ marginTop: 0 }}>
+                Améliorations
+              </h2>
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  backgroundColor: "black",
+                  overflowY: "scroll"
+                }}
+                onMouseLeave={() => this.props.hideTooltip()}
+              >
+                {renderEnhancements()}
               </div>
-            }
+            </div>
           </div>
         </div>
         <div
@@ -177,6 +192,7 @@ type Props = {
   tooltipActive: State["tooltipActive"];
   tooltipTop: State["tooltipTop"];
   tooltipBuilding: State["tooltipBuilding"];
+  state: State;
 } & ReturnType<typeof mapDispatchToProps>;
 
 const mapStateToProps = (state: State) => {
@@ -188,11 +204,12 @@ const mapStateToProps = (state: State) => {
     buildingsOwned: state.buildingsOwned,
     tooltipActive: state.tooltipActive,
     tooltipTop: state.tooltipTop,
-    tooltipBuilding: state.tooltipBuilding
+    tooltipBuilding: state.tooltipBuilding,
+    state
   };
 };
 
-const mapDispatchToProps = (dispatch: any) => {
+export const mapDispatchToProps = (dispatch: any) => {
   return {
     loadGame: () => dispatch(loadGame()),
     saveGame: () => dispatch(saveGame()),

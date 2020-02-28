@@ -4,7 +4,7 @@ import { eras, Eras, Era, Upgrade, ResourceTypes } from "../game-data";
 
 export type StateResource = {
   hundredths: BigNumberInstance;
-  generated: BigNumberInstance;
+  totalGenerated: BigNumberInstance;
   handGenerated: BigNumberInstance;
   perSecond: BigNumberInstance;
 };
@@ -15,6 +15,7 @@ export type State = {
   lastTickTime: number | null;
   buildingsOwned: number;
   eras: Eras;
+  oldUpgrades: Upgrade[];
   currentEra: Era;
   tooltipActive: boolean;
   tooltipTop: string;
@@ -25,24 +26,25 @@ const defaultState: State = {
   lastTickTime: null,
   buildingsOwned: 0,
   Bois: {
-    hundredths: BigNumber(0),
-    generated: BigNumber(0),
-    handGenerated: BigNumber(1000000),
+    hundredths: BigNumber(10000000),
+    totalGenerated: BigNumber(0),
+    handGenerated: BigNumber(0),
     perSecond: BigNumber(0)
   },
   Pierre: {
-    hundredths: BigNumber(0),
-    generated: BigNumber(0),
+    hundredths: BigNumber(10000000),
+    totalGenerated: BigNumber(0),
     handGenerated: BigNumber(0),
     perSecond: BigNumber(0)
   },
   Nourriture: {
-    hundredths: BigNumber(0),
-    generated: BigNumber(0),
+    hundredths: BigNumber(10000000),
+    totalGenerated: BigNumber(0),
     handGenerated: BigNumber(0),
     perSecond: BigNumber(0)
   },
   eras,
+  oldUpgrades: [],
   currentEra: eras.StoneAge,
   tooltipActive: false,
   tooltipTop: "0px",
@@ -52,9 +54,48 @@ const defaultState: State = {
 function deepCloneBuildingObject(buildingObject: Upgrade): Upgrade {
   return {
     ...buildingObject,
-    basePrice: BigNumber(buildingObject.basePrice),
-    priceOfNext: BigNumber(buildingObject.priceOfNext),
-    baseNHPT: BigNumber(buildingObject.baseNHPT)
+    info: {
+      ...buildingObject.info,
+      Bois: buildingObject.info.Bois
+        ? {
+            ...buildingObject.info.Bois,
+            basePrice: BigNumber(
+              buildingObject.info.Bois.baseHundredthsPerTick
+            ),
+            priceOfNext: BigNumber(buildingObject.info.Bois.priceOfNext),
+            baseHundredthsPerTick: BigNumber(
+              buildingObject.info.Bois.baseHundredthsPerTick
+            )
+          }
+        : undefined,
+      Pierre: buildingObject.info.Pierre
+        ? {
+            ...buildingObject.info.Pierre,
+            basePrice: BigNumber(
+              buildingObject.info.Pierre.baseHundredthsPerTick
+            ),
+            priceOfNext: BigNumber(buildingObject.info.Pierre.priceOfNext),
+            baseHundredthsPerTick: BigNumber(
+              buildingObject.info.Pierre.baseHundredthsPerTick
+            )
+          }
+        : undefined,
+      Nourriture: buildingObject.info.Nourriture
+        ? {
+            ...buildingObject.info.Nourriture,
+            basePrice: BigNumber(
+              buildingObject.info.Nourriture.baseHundredthsPerTick
+            ),
+            priceOfNext: BigNumber(buildingObject.info.Nourriture.priceOfNext),
+            baseHundredthsPerTick: BigNumber(
+              buildingObject.info.Nourriture.baseHundredthsPerTick
+            )
+          }
+        : undefined
+    }
+    // basePrice: BigNumber(buildingObject.basePrice),
+    // priceOfNext: BigNumber(buildingObject.priceOfNext),
+    // baseHundredthsPerTick: BigNumber(buildingObject.baseHundredthsPerTick)
   };
 }
 
@@ -65,18 +106,37 @@ function deepCloneStateObject(stateObject: State): State {
     upgrades.push(deepCloneBuildingObject(b))
   );
 
+  const oldUpgrades: Upgrade[] = [];
+
+  stateObject.oldUpgrades.forEach(u => {
+    oldUpgrades.push(deepCloneBuildingObject(u));
+  });
+
   return {
     ...stateObject,
     Bois: {
       hundredths: BigNumber(stateObject.Bois.hundredths),
-      generated: BigNumber(stateObject.Bois.generated),
+      totalGenerated: BigNumber(stateObject.Bois.totalGenerated),
       handGenerated: BigNumber(stateObject.Bois.handGenerated),
       perSecond: BigNumber(stateObject.Bois.perSecond)
+    },
+    Pierre: {
+      hundredths: BigNumber(stateObject.Pierre.hundredths),
+      totalGenerated: BigNumber(stateObject.Pierre.totalGenerated),
+      handGenerated: BigNumber(stateObject.Pierre.handGenerated),
+      perSecond: BigNumber(stateObject.Pierre.perSecond)
+    },
+    Nourriture: {
+      hundredths: BigNumber(stateObject.Nourriture.hundredths),
+      totalGenerated: BigNumber(stateObject.Nourriture.totalGenerated),
+      handGenerated: BigNumber(stateObject.Nourriture.handGenerated),
+      perSecond: BigNumber(stateObject.Nourriture.perSecond)
     },
     currentEra: {
       ...stateObject.currentEra,
       upgrades: upgrades
-    }
+    },
+    oldUpgrades
   };
 }
 
@@ -124,15 +184,15 @@ export default (state = defaultState, action: any) => {
       return stateClone;
 
     case "SAVE_GAME":
-      let simplifiedBuildings = [];
-      state.currentEra.upgrades.forEach(b =>
-        simplifiedBuildings.push({
-          ...b,
-          basePrice: b.basePrice.val(),
-          priceOfNext: b.priceOfNext.val(),
-          baseNHPT: b.baseNHPT.val()
-        })
-      );
+      // let simplifiedBuildings = [];
+      // state.currentEra.upgrades.forEach(b =>
+      //   simplifiedBuildings.push({
+      //     ...b,
+      //     basePrice: b.basePrice.val(),
+      //     priceOfNext: b.priceOfNext.val(),
+      //     baseNHPT: b.baseHundredthsPerTick.val()
+      //   })
+      // );
 
       // TODO: Save to localstorage
       // localStorage.naniteSavedGame = JSON.stringify({
@@ -161,13 +221,23 @@ export default (state = defaultState, action: any) => {
 
       const timingMultiplier = Math.round(lapsedMicroseconds / 100);
 
-      state.currentEra.upgrades.forEach(up => {
-        const nanitesFromBuilding = BigNumber(up.baseNHPT)
-          .mult(up.owned)
-          .mult(timingMultiplier);
+      const allUpgrades = [...state.currentEra.upgrades, ...state.oldUpgrades];
 
-        stateClone[up.resourceType].hundredths.plus(nanitesFromBuilding);
-        stateClone[up.resourceType].generated.plus(nanitesFromBuilding);
+      allUpgrades.forEach(up => {
+        Object.entries(up.info)
+          .filter(([, value]) => value !== undefined)
+          .forEach(([resourceType, value]) => {
+            const gainFromUpgrades = BigNumber(value!.baseHundredthsPerTick)
+              .mult(up.owned)
+              .mult(timingMultiplier);
+
+            stateClone[resourceType as ResourceTypes].hundredths.plus(
+              gainFromUpgrades
+            );
+            stateClone[resourceType as ResourceTypes].totalGenerated.plus(
+              gainFromUpgrades
+            );
+          });
       });
 
       stateClone.lastTickTime = tickTime;
@@ -175,38 +245,87 @@ export default (state = defaultState, action: any) => {
       return stateClone;
 
     case "ADD_NANITES":
-      const clickUpgrades = state.currentEra.upgrades.reduce((acc, bld) => {
-        return acc + bld.baseUpgradeClick.val() * bld.owned;
-      }, 0);
+      const woodClickUpgrade = state.currentEra.upgrades
+        .filter(u => u.info.Bois !== undefined)
+        .reduce((acc, u) => {
+          return acc + u.info.Bois!.baseUpgradeClick.val() * u.owned;
+        }, 0);
 
-      action.payload += clickUpgrades;
+      const stoneClickUpgrade = state.currentEra.upgrades
+        .filter(u => u.info.Pierre !== undefined)
+        .reduce((acc, u) => {
+          return acc + u.info.Pierre!.baseUpgradeClick.val() * u.owned;
+        }, 0);
 
-      stateClone.Bois.hundredths.plus(action.payload);
-      stateClone.Bois.generated.plus(action.payload);
-      stateClone.Bois.handGenerated.plus(action.payload);
+      const foodClickUpgrade = state.currentEra.upgrades
+        .filter(u => u.info.Nourriture !== undefined)
+        .reduce((acc, u) => {
+          return acc + u.info.Nourriture!.baseUpgradeClick.val() * u.owned;
+        }, 0);
+
+      // Add to Bois
+      stateClone.Bois.hundredths.plus(action.payload).plus(woodClickUpgrade);
+      stateClone.Bois.totalGenerated
+        .plus(action.payload)
+        .plus(woodClickUpgrade);
+      stateClone.Bois.handGenerated.plus(action.payload).plus(woodClickUpgrade);
+
+      // Add to Pierre
+      stateClone.Pierre.hundredths.plus(stoneClickUpgrade);
+      stateClone.Pierre.totalGenerated.plus(stoneClickUpgrade);
+      stateClone.Pierre.handGenerated.plus(stoneClickUpgrade);
+
+      // Add to Nourriture
+      stateClone.Nourriture.hundredths.plus(foodClickUpgrade);
+      stateClone.Nourriture.totalGenerated.plus(foodClickUpgrade);
+      stateClone.Nourriture.handGenerated.plus(foodClickUpgrade);
 
       return stateClone;
 
     case "BUY_BUILDING":
-      let b = stateClone.currentEra.upgrades.find(
-        bld => bld.id === action.payload
+      let upgrade = stateClone.currentEra.upgrades.find(
+        u => u.id === action.payload
       )!;
 
-      if (!b) {
+      if (!upgrade) {
         throw new Error("Could not find upgrade (gameReducer.ts:line 171)");
       }
 
-      b.owned++;
+      upgrade.owned++;
 
       stateClone.buildingsOwned++;
-      stateClone.Bois.perSecond.plus(BigNumber(b.baseNHPT));
 
-      stateClone.Bois.hundredths.minus(BigNumber(b.priceOfNext).mult(100));
+      Object.entries(upgrade.info)
+        .filter(([, value]) => value !== undefined)
+        .forEach(([resourceType, value]) => {
+          // Add to click per seconds
+          stateClone[resourceType as ResourceTypes].perSecond.plus(
+            BigNumber(value!.baseHundredthsPerTick)
+          );
 
-      const multiplier = Math.floor(Math.pow(1.15, b.owned) * 100);
-      b.priceOfNext = BigNumber(b.basePrice)
-        .mult(multiplier)
-        .div(100);
+          // Remove from total resources
+          stateClone[resourceType as ResourceTypes].hundredths.minus(
+            BigNumber(value!.priceOfNext).mult(100)
+          );
+
+          const multiplier = Math.floor(Math.pow(1.15, upgrade.owned) * 100);
+
+          upgrade.info[resourceType as ResourceTypes]!.priceOfNext = BigNumber(
+            value!.basePrice
+          )
+            .mult(multiplier)
+            .div(100);
+        });
+
+      if (upgrade.getNextEra) {
+        const oldEra = stateClone.currentEra;
+
+        stateClone.oldUpgrades = [
+          ...stateClone.oldUpgrades,
+          ...oldEra.upgrades
+        ];
+        stateClone.currentEra = upgrade.getNextEra();
+      }
 
       return stateClone;
 
