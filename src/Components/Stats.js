@@ -16,14 +16,16 @@ const Stats = props => {
             " ",
             "(",
             prettifyNumber(BigNumber(props.bois.perSecond).div(10)),
-            "/s)"),
+            "/s)",
+            React.createElement("div", { id: "wood" })),
         React.createElement("span", null,
             "Pierre:",
             " ",
             prettifyNumber(BigNumber(props.pierre.hundredths).div(100)),
             " (",
             prettifyNumber(BigNumber(props.pierre.perSecond).div(10)),
-            "/s)"),
+            "/s)",
+            React.createElement("div", { id: "stone" })),
         React.createElement("span", null,
             "Nourriture:",
             " ",
@@ -31,6 +33,7 @@ const Stats = props => {
             " ",
             "(",
             prettifyNumber(BigNumber(props.nourriture.perSecond).div(10)),
-            "/s)")));
+            "/s)",
+            React.createElement("div", { id: "food" }))));
 };
 export default Stats;

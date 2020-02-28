@@ -72,12 +72,11 @@ class Game extends Component<Props> {
           width: "100vw"
         }}
       >
-        <div style={{ backgroundColor: "green", height: "8vh", width: "100%" }}>
+        <div id="upperPanel">
           <Stats
             bois={this.props.Bois}
             pierre={this.props.Pierre}
-            nourriture={this.props.Nourriture}
-          />
+            nourriture={this.props.Nourriture}/>
         </div>
         <div
           style={{
@@ -91,7 +90,7 @@ class Game extends Component<Props> {
             style={{
               display: "inline-block",
               width: "50%",
-              backgroundColor: "blue",
+              background: 'linear-gradient(#37418a, #9198e5,#37418a)',
               verticalAlign: "middle",
               fontSize: 0,
               height: "100%"
@@ -104,14 +103,10 @@ class Game extends Component<Props> {
                 par seconde
               </small>
             </div>
-
             <div
               id="bigNanite"
               style={{ margin: "50px auto 0" }}
-              onClick={() => this.props.addNanites(100)}
-            >
-              <h1 className="text-center">Imagine an image of a nanite here</h1>
-            </div>
+              onClick={() => this.props.addNanites(100)}>''</div>
           </div>
           <div
             style={{
