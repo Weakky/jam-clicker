@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "strict": true,
+    "jsx": "react",
+    "target": "ES2017",
+    "allowSyntheticDefaultImports": true
+  },
+  "include": ["./src/**/*.ts", "./src/**/*.tsx"]
+}
