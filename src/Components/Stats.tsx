@@ -19,7 +19,7 @@ const Stats: React.FC<Props> = props => {
         flexDirection: "row",
         justifyContent: "space-evenly",
         alignItems: "center",
-        color: "black"
+        color: "#C0EDF0"
       }}
     >
       {/* <span >
@@ -50,7 +50,7 @@ const Stats: React.FC<Props> = props => {
             BigNumber(props.state[r.name as ResourceTypes].perSecond).div(10)
           )}
           /s)
-          <div id={r.name} />
+          <div id={r.name + 'Spe'} />
         </span>
       ))}
     </div>

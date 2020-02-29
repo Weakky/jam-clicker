@@ -15,19 +15,19 @@ const defaultState = {
     lastQuoteTickTime: Date.now(),
     buildingsOwned: 0,
     Bois: {
-        hundredths: BigNumber(100000000000),
+        hundredths: BigNumber(0),
         totalGenerated: BigNumber(0),
         handGenerated: BigNumber(0),
         perSecond: BigNumber(0)
     },
     Pierre: {
-        hundredths: BigNumber(100000000000),
+        hundredths: BigNumber(0),
         totalGenerated: BigNumber(0),
         handGenerated: BigNumber(0),
         perSecond: BigNumber(0)
     },
     Nourriture: {
-        hundredths: BigNumber(100000000000),
+        hundredths: BigNumber(0),
         totalGenerated: BigNumber(0),
         handGenerated: BigNumber(0),
         perSecond: BigNumber(0)

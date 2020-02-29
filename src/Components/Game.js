@@ -15,8 +15,7 @@ class Game extends Component {
         window.setInterval(() => props.saveGame(), 60000);
     }
     displayNaniteValue() {
-        const resource = this.props.state.currentEra.resources[0]
-            .name;
+        const resource = this.props.state.currentEra.resources[0].name;
         const wholeNanites = BigNumber(this.props.state[resource].hundredths).div(100);
         return prettifyNumber(wholeNanites, true);
     }
@@ -60,15 +59,9 @@ class Game extends Component {
                     height: "92vh",
                     width: "100%"
                 } },
-                React.createElement("div", { style: {
-                        display: "inline-block",
-                        width: "50%",
-                        background: "linear-gradient(#37418a, #9198e5,#37418a)",
-                        verticalAlign: "middle",
-                        height: "100%"
-                    } },
+                React.createElement("div", { id: "backPlanet" },
                     React.createElement("div", { id: "banner" },
-                        React.createElement("h2", null,
+                        React.createElement("h2", { style: { margin: '0 auto auto auto' } },
                             this.displayNaniteValue(),
                             " ",
                             this.props.state.currentEra.name === "Age de Pierre" ||
@@ -79,9 +72,9 @@ class Game extends Component {
                             prettifyNumber(BigNumber(this.props.Bois.perSecond).div(10)),
                             " ",
                             "par seconde")),
-                    React.createElement("div", { id: "bigNanite", style: { margin: "50px auto 0" }, onClick: () => this.props.addNanites(100) }, "''")),
+                    React.createElement("div", { id: this.props.state.currentEra.earthImagePath, style: { margin: "50px auto 0" }, onClick: () => this.props.addNanites(100) })),
                 React.createElement("div", { style: {
-                        backgroundColor: "orange",
+                        backgroundColor: "#1A1C23",
                         display: "inline-block",
                         width: "50%",
                         verticalAlign: "middle",

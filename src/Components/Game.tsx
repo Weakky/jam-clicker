@@ -29,8 +29,7 @@ class Game extends Component<Props> {
   }
 
   displayNaniteValue() {
-    const resource = this.props.state.currentEra.resources[0]
-      .name as ResourceTypes;
+    const resource = this.props.state.currentEra.resources[0].name as ResourceTypes;
 
     const wholeNanites = BigNumber(this.props.state[resource].hundredths).div(
       100
@@ -111,17 +110,9 @@ class Game extends Component<Props> {
             width: "100%"
           }}
         >
-          <div
-            style={{
-              display: "inline-block",
-              width: "50%",
-              background: "linear-gradient(#37418a, #9198e5,#37418a)",
-              verticalAlign: "middle",
-              height: "100%"
-            }}
-          >
+          <div id={"backPlanet"}>
             <div id="banner">
-              <h2>
+              <h2 style={{margin: '0 auto auto auto'}}>
                 {this.displayNaniteValue()}{" "}
                 {this.props.state.currentEra.name === "Age de Pierre" ||
                 this.props.state.currentEra.name === "Moyen-Âge"
@@ -134,16 +125,14 @@ class Game extends Component<Props> {
               </small>
             </div>
             <div
-              id="bigNanite"
+              id={this.props.state.currentEra.earthImagePath}
               style={{ margin: "50px auto 0" }}
-              onClick={() => this.props.addNanites(100)}
-            >
-              ''
+              onClick={() => this.props.addNanites(100)}>
             </div>
           </div>
           <div
             style={{
-              backgroundColor: "orange",
+              backgroundColor: "#1A1C23",
               display: "inline-block",
               width: "50%",
               verticalAlign: "middle",

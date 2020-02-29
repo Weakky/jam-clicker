@@ -1,6 +1,6 @@
 declare module 'big-number' {
   export type BigNumberInstance = {
-    val(): number;
+    val(): number | string;
     plus(...args: any[]): BigNumberInstance
     minus(...args: any[]): BigNumberInstance
     mult(...args: any[]): BigNumberInstance

@@ -27,7 +27,7 @@ export const upgradesPerEras = {
             id: 1,
             type: "tool",
             name: "Hache",
-            plural: "Haches",
+            plural: "Hache",
             description: "Outil pour couper du bois",
             owned: 0,
             // resourceType: "Bois",
@@ -44,7 +44,7 @@ export const upgradesPerEras = {
             id: 2,
             type: "tool",
             name: "Pioche",
-            plural: "Pioches",
+            plural: "Pioche",
             description: "Outil pour récolter de la pierre",
             owned: 0,
             // resourceType: "Pierre",
@@ -67,7 +67,7 @@ export const upgradesPerEras = {
             id: 3,
             type: "tool",
             name: "Lance",
-            plural: "Lances",
+            plural: "Lance",
             description: "Outil pour récolter de la nourriture",
             owned: 0,
             // resourceType: "Nourriture",
@@ -89,7 +89,7 @@ export const upgradesPerEras = {
         {
             id: 4,
             type: "event",
-            name: "Cabane en bois",
+            name: "Cabane_en_bois",
             plural: "Cabane en bois",
             description: "Récolte de bois automatisée",
             owned: 0,
@@ -106,8 +106,8 @@ export const upgradesPerEras = {
         {
             id: 8,
             type: "event",
-            name: "Travail du fer",
-            plural: "Travails du fer",
+            name: "Travail_du_fer",
+            plural: "Travail du fer",
             description: "Travail du fer",
             owned: 0,
             info: {
@@ -129,7 +129,7 @@ export const upgradesPerEras = {
             id: 9,
             type: "event",
             name: "Château",
-            plural: "Châteaux",
+            plural: "Château",
             description: "Passage au Moyen-Âge",
             owned: 0,
             info: {
@@ -160,7 +160,7 @@ export const upgradesPerEras = {
             id: 5,
             type: "tool",
             name: "Mine",
-            plural: "Mines",
+            plural: "Mine",
             description: "Récolte de pierre automatisée",
             owned: 0,
             // resourceType: "Pierre",
@@ -176,8 +176,8 @@ export const upgradesPerEras = {
         {
             id: 6,
             type: "tool",
-            name: "Camp de bûcheron",
-            plural: "Camp de bûcherons",
+            name: "Camp_de_bûcheron",
+            plural: "Camp de bûcheron",
             description: "Récolte de bois automatisée",
             owned: 0,
             // resourceType: "Bois",
@@ -194,7 +194,7 @@ export const upgradesPerEras = {
             id: 7,
             type: "tool",
             name: "Elevage",
-            plural: "Elevages",
+            plural: "Elevage",
             description: "Récolte de nourriture automatisée",
             owned: 0,
             // resourceType: "Nourriture",
@@ -212,7 +212,7 @@ export const upgradesPerEras = {
         {
             id: 1,
             type: "tool",
-            name: "Scies à main",
+            name: "Scies_à_main",
             plural: "Scies à main",
             description: "Outil pour couper du bois",
             owned: 0,
@@ -228,9 +228,9 @@ export const upgradesPerEras = {
         {
             id: 2,
             type: "tool",
-            name: "Pioches en métal",
-            plural: "Piches en métal",
-            description: "Nanites infect a humanoid host, overpowering will and creating new nanites",
+            name: "Pioches_en_métal",
+            plural: "Pioches en métal",
+            description: "Outil permettant la récolte de métals plus rares",
             owned: 0,
             // resourceType: "Bois",
             info: {
@@ -252,8 +252,8 @@ export const upgradesPerEras = {
             id: 3,
             type: "tool",
             name: "Arc",
-            plural: "Arcs",
-            description: "An entire manufactoring facility devoted to creation of new nanites",
+            plural: "Arc",
+            description: "Un arc rend la chase bien plus efficace",
             owned: 0,
             info: {
                 Bois: {
@@ -273,9 +273,9 @@ export const upgradesPerEras = {
         {
             id: 5,
             name: "Scierie",
-            plural: "Scieries",
+            plural: "Scierie",
             type: "tool",
-            description: "An entire manufactoring facility devoted to creation of new nanites",
+            description: "Production de bois automatisée",
             owned: 0,
             info: {
                 Bois: {
@@ -289,9 +289,9 @@ export const upgradesPerEras = {
         {
             id: 4,
             name: "Armurerie",
-            plural: "Armureries",
+            plural: "Armurerie",
             type: "tool",
-            description: "An entire manufactoring facility devoted to creation of new nanites",
+            description: "Productions d'armes et armures automatisée",
             owned: 0,
             info: {
                 Pierre: {
@@ -305,9 +305,9 @@ export const upgradesPerEras = {
         {
             id: 6,
             name: "Boucherie",
-            plural: "Boucheries",
+            plural: "Boucherie",
             type: "tool",
-            description: "An entire manufactoring facility devoted to creation of new nanites",
+            description: "Permet de générer de la nourriture plus efficacement",
             owned: 0,
             info: {
                 Nourriture: {
@@ -321,9 +321,9 @@ export const upgradesPerEras = {
         {
             id: 7,
             name: "Artisanat",
-            plural: "Artisanats",
+            plural: "Artisanat",
             type: "event",
-            description: "An entire manufactoring facility devoted to creation of new nanites",
+            description: "Il est désormais possible de confectionner des outils plus sophistiqués",
             owned: 0,
             info: {
                 Bois: {
@@ -348,10 +348,10 @@ export const upgradesPerEras = {
         },
         {
             id: 8,
-            name: "Decouverte de l'acier",
+            name: "Decouverte_de_l_acier",
             plural: "Decouvertes de l'acier",
             type: "event",
-            description: "An entire manufactoring facility devoted to creation of new nanites",
+            description: "L'acier est un aliage plus résistant que le fer et bien plus utile",
             owned: 0,
             info: {
                 Bois: {
@@ -377,9 +377,9 @@ export const upgradesPerEras = {
         {
             id: 9,
             name: "Monnaie",
-            plural: "Monnaies",
+            plural: "Monnaie",
             type: "event",
-            description: "An entire manufactoring facility devoted to creation of new nanites",
+            description: "L'argent est la fondation de toute société moderne",
             owned: 0,
             info: {
                 Bois: {
@@ -409,8 +409,8 @@ export const upgradesPerEras = {
             id: 1,
             type: "event",
             name: "Immeuble",
-            plural: "Immeubles",
-            description: "Outil pour couper du bois",
+            plural: "Immeuble",
+            description: "Loger plus de gens en occupant moins d'espace",
             owned: 0,
             // resourceType: "Bois",
             info: {
@@ -433,8 +433,8 @@ export const upgradesPerEras = {
             id: 2,
             type: "event",
             name: "Publicité",
-            plural: "Publicités",
-            description: "Nanites infect a humanoid host, overpowering will and creating new nanites",
+            plural: "Publicité",
+            description: "Le capitalisme se dévelloppe",
             owned: 0,
             // resourceType: "Bois",
             info: {
@@ -457,8 +457,8 @@ export const upgradesPerEras = {
             id: 3,
             type: "event",
             name: "Internet",
-            plural: "Internets",
-            description: "Nanites infect a humanoid host, overpowering will and creating new nanites",
+            plural: "Internet",
+            description: "Internet permet au monde entier de communiquer de façon instantanée",
             owned: 0,
             // resourceType: "Bois",
             info: {
@@ -481,8 +481,8 @@ export const upgradesPerEras = {
             id: 4,
             type: "event",
             name: "Balistique",
-            plural: "Balistiqes",
-            description: "Nanites infect a humanoid host, overpowering will and creating new nanites",
+            plural: "Balistiqe",
+            description: "Les armes deviennent bien plus meurtirères",
             owned: 0,
             // resourceType: "Bois",
             info: {
@@ -504,9 +504,9 @@ export const upgradesPerEras = {
         {
             id: 5,
             type: "event",
-            name: "Programme Spatial",
-            plural: "Programme Spatiaux",
-            description: "Nanites infect a humanoid host, overpowering will and creating new nanites",
+            name: "Programme_Spatial",
+            plural: "Programme Spatial",
+            description: "L'Homme se tourne vers l'espace",
             owned: 0,
             // resourceType: "Bois",
             info: {
@@ -528,9 +528,9 @@ export const upgradesPerEras = {
         {
             id: 6,
             type: "event",
-            name: "Projet Yggdrasil",
-            plural: "Projets Ygggrasils",
-            description: "Nanites infect a humanoid host, overpowering will and creating new nanites",
+            name: "Projet_Yggdrasil",
+            plural: "Projet Ygggrasil",
+            description: "Il est temps de fuir ce monde rongé par la pollution",
             owned: 0,
             // resourceType: "Bois",
             info: {
@@ -554,8 +554,8 @@ export const upgradesPerEras = {
             id: 7,
             type: "tool",
             name: "Tronçonneuse",
-            plural: "Tronçonneuses",
-            description: "Nanites infect a humanoid host, overpowering will and creating new nanites",
+            plural: "Tronçonneuse",
+            description: "Couper des arbres est désormais un jeu d'enfant",
             owned: 0,
             // resourceType: "Bois",
             info: {
@@ -571,8 +571,8 @@ export const upgradesPerEras = {
             id: 8,
             type: "tool",
             name: "Foreuse",
-            plural: "Foreuses",
-            description: "Nanites infect a humanoid host, overpowering will and creating new nanites",
+            plural: "Foreuse",
+            description: "Il est possible de récupérer des matériaux même dans les profondeurs de la terre",
             owned: 0,
             // resourceType: "Bois",
             info: {
@@ -588,8 +588,8 @@ export const upgradesPerEras = {
             id: 9,
             type: "tool",
             name: "Fusil",
-            plural: "Fusils",
-            description: "Nanites infect a humanoid host, overpowering will and creating new nanites",
+            plural: "Fusil",
+            description: "'give me AK my friend' - Joueur Russe de Csgo",
             owned: 0,
             // resourceType: "Bois",
             info: {
@@ -605,8 +605,8 @@ export const upgradesPerEras = {
             id: 10,
             type: "tool",
             name: "Fonderie",
-            plural: "Fonderies",
-            description: "Nanites infect a humanoid host, overpowering will and creating new nanites",
+            plural: "Fonderie",
+            description: "Les alliages sont créés à la pelle",
             owned: 0,
             // resourceType: "Bois",
             info: {
@@ -621,9 +621,9 @@ export const upgradesPerEras = {
         {
             id: 11,
             type: "tool",
-            name: "Exploitation forestière",
-            plural: "Exploitation forestières",
-            description: "Nanites infect a humanoid host, overpowering will and creating new nanites",
+            name: "Exploitation_forestière",
+            plural: "Exploitation forestière",
+            description: "Amazonie ? Connais pas",
             owned: 0,
             // resourceType: "Bois",
             info: {
@@ -639,8 +639,8 @@ export const upgradesPerEras = {
             id: 12,
             type: "tool",
             name: "Abattoir",
-            plural: "Abattoirs",
-            description: "Nanites infect a humanoid host, overpowering will and creating new nanites",
+            plural: "Abattoir",
+            description: "L'exploitation des animaux à la chaine permet de nourrir une majeur partie de la population",
             owned: 0,
             // resourceType: "Bois",
             info: {
@@ -672,7 +672,7 @@ export const eras = {
             "Je vois une porte rouge et je veux la peindre en noir… Plus aucune couleur, je les veux en noir…",
             "Vos villageois ont érigés un cercle de pierre en hommage à une divinité, elle vous ressemble étrangement d’ailleurs..."
         ],
-        earthImagePath: ""
+        earthImagePath: "stoneAge"
     },
     MiddleAge: {
         name: "Moyen-Âge",
@@ -690,7 +690,7 @@ export const eras = {
             "Un aventurier simule une fausse blessure par flèche au genou",
             "C’est pas faux"
         ],
-        earthImagePath: ""
+        earthImagePath: "middleAge"
     },
     IndustrialAge: {
         name: "Âge de l'industrialisation",
@@ -704,7 +704,7 @@ export const eras = {
             "Afin de protéger le monde de la dévastation !” s’exprime le 1er ministre sur la construction d’une usine d’armes.",
             "Mon clavir st foutu, la touche ntr “z” t “r” n fonctionn plus, aidz moi svp !"
         ],
-        earthImagePath: ""
+        earthImagePath: "industrialAge"
     }
 };
 // {

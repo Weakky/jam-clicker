@@ -1,8 +1,8 @@
-@import url("https://fonts.googleapis.com/css?family=Orbitron");
-
-$themeGreen: #080;
-$highlightGreen: #0c0;
-$transBG: rgba(0, 0, 0, 0.7);
+@import url("https://fonts.googleapis.com/css?family=Roboto+Mono");
+//Roboto+Mono | Sparta
+$themeGreen: #C0EDF0;
+$highlightGreen: #2ce6f2;
+$transBG: #C0EDF0;
 $naniteSize: 600px;
 $engorgedNaniteSize: $naniteSize * 1.1;
 $naniteOffset: $naniteSize / 2;
@@ -14,18 +14,24 @@ $rightWidth: 3 /12 * 100%;
 body {
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
+  font-family: 'Roboto Mono', sans-serif;
   background-color: #000;
-  color: $themeGreen;
+  color: #C0EDF0;
   user-select: none;
 }
 
+#dsp {
+  display: inline-block;
+  vertical-align: middle;
+  margin: 5px 260px 5px 140px;
+  width: 50px;
+  height: 100%;
+}
+
 #upperPanel {
-  background: linear-gradient(0.25turn, #378a84, #9198e5, #378a84);
+  background: linear-gradient(0.25turn, #1A1C23, #3d139e, #1A1C23);
   height: 8vh;
   width: 100%;
-  //border: 2px solid red;
-  //border-radius: 5px;
 }
 
 #App {
@@ -33,37 +39,29 @@ body {
   flex: 1;
 }
 
-// style={{height: '100vh', width: '100vw'}}
 #Game {
   display: flex;
   flex-direction: column;
 }
 
-/*#leftPanel {
+#backPlanet {
+  display: inline-block;
+  width: 50%;
+  background-image: url("Ressources/planet/bg_espace.png");
+  vertical-align: middle;
   height: 100%;
-  width: 2 / 12 * 100%;
-  float: left;
-  position: relative;
-  background-size: cover;
-
-  @media (max-width: 768px) {
-    width: 100%;
-  }
-}*/
+}
 
 #banner {
   width: 100%;
-  background-color: $transBG;
+  background-color: #1A1C23;
   text-align: center;
 }
 
-#bigNanite {
+#stoneAge {
   width: $naniteSize;
   height: $naniteSize;
   background-image: url("Ressources/planet/planete2-0.svg");
-  //background-size: 400px 400px;
-  //background-color: $transBG;
-  //border: 1px solid $themeGreen;
   background-repeat: no-repeat;
   padding: 0.4em;
   cursor: pointer;
@@ -78,54 +76,47 @@ body {
     width: $naniteSize;
     height: $naniteSize;
   }
-
-  // @media (max-width: 768px) {
-  //   &,
-  //   &:hover {
-  //     width: $naniteSize;
-  //     height: $naniteSize;
-  //     top: calc(60% - #{$naniteOffset});
-  //     left: calc(50% - #{$naniteOffset});
-  //   }
-
-  //   &:active {
-  //     width: $engorgedNaniteSize;
-  //     height: $engorgedNaniteSize;
-  //     top: calc(60% - #{$engorgedOffset});
-  //     left: calc(50% - #{$engorgedOffset});
-  //   }
-  // }
 }
 
-/*#centerPanel {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  height: 100%;
-  width: $centerWidth;
-  float: left;
-  padding: 1em;
-  background: linear-gradient(#e66465, #9198e5,#e66465);
+#middleAge {
+  width: $naniteSize;
+  height: $naniteSize;
+  background-image: url("Ressources/planet/planete2.svg");
+  background-repeat: no-repeat;
+  padding: 0.4em;
+  cursor: pointer;
+  margin-top: 50px;
 
-  @media (max-width: 768px) {
-    height: auto;
-    width: 100%;
+  &:hover {
+    width: $engorgedNaniteSize;
+    height: $engorgedNaniteSize;
   }
-}*/
 
-/*#rightPanel {
-  height: 100%;
-  width: $rightWidth;
-  float: left;
-  padding: 1em;
-  overflow-x: visible;
-  overflow-y: auto;
-
-  @media (max-width: 768px) {
-    height: auto;
-    width: 100%;
+  &:active {
+    width: $naniteSize;
+    height: $naniteSize;
   }
-}*/
+}
+
+#industrialAge {
+  width: $naniteSize;
+  height: $naniteSize;
+  background-image: url("Ressources/planet/planete3.svg");
+  background-repeat: no-repeat;
+  padding: 0.4em;
+  cursor: pointer;
+  margin-top: 50px;
+
+  &:hover {
+    width: $engorgedNaniteSize;
+    height: $engorgedNaniteSize;
+  }
+
+  &:active {
+    width: $naniteSize;
+    height: $naniteSize;
+  }
+}
 
 #tooltip {
   width: 300px;
@@ -133,9 +124,9 @@ body {
   right: $rightWidth;
   border: 1px solid #999;
   padding: 0.5em;
-  background-color: rgba(41, 37, 161, 0.8);
-  color: #ffd70f;
-
+  background-color: #1A1C23;
+  color: #C0EDF0;
+  z-index: 999;
   .description {
     font-size: 15px;
   }
@@ -145,23 +136,7 @@ body {
   // padding-bottom: 200px;
 }
 
-#Bois {
-  position: absolute;
-  background-repeat: no-repeat;
-  background-image: url("Ressources/primary/wood.svg");
-  height: 40px;
-  width: 100%;
-}
-
-#Pierre {
-  position: absolute;
-  background-repeat: no-repeat;
-  background-image: url("Ressources/primary/stone.svg");
-  height: 40px;
-  width: 100%;
-}
-
-#Nourriture {
+#items {
   position: absolute;
   background-repeat: no-repeat;
   background-image: url("Ressources/primary/food.svg");
@@ -169,21 +144,24 @@ body {
   width: 100%;
 }
 
-#Or {
-  position: absolute;
+#frame {
+  background-image: url("Ressources/Planche_bat_améliorations.png");
   background-repeat: no-repeat;
-  background-image: url("Ressources/industrialAge/Paquet_de_thunes.svg");
-  height: 40px;
-  width: 100%;
+}
+
+#test {
+  &:hover {
+    //color: $highlightGreen;
+    border-color: $highlightGreen;
+    background-color: #282b2b !important;
+  }
 }
 
 .building {
   display: flex;
   flex: 1;
-  align-items: center;
   flex-direction: column;
   justify-content: center;
-  //align-items: space-between;
   padding: 1em;
   border: 1px solid $themeGreen;
 
@@ -191,4 +169,280 @@ body {
     color: $highlightGreen;
     border-color: $highlightGreen;
   }
+}
+
+#Bois {
+  position: sticky;
+  background-repeat: no-repeat;
+  background-image: url("Ressources/primary/wood.svg");
+  height: 40px;
+  width: 40px;
+}
+
+#Pierre {
+  background-repeat: no-repeat;
+  background-image: url("Ressources/primary/stone.svg");
+  height: 40px;
+  width: 40px;
+}
+
+#Nourriture {
+  background-repeat: no-repeat;
+  background-image: url("Ressources/primary/food.svg");
+  height: 40px;
+  width: 40px;
+}
+
+#Or {
+  background-repeat: no-repeat;
+  background-image: url("Ressources/industrialAge/Paquet_de_thunes.svg");
+  height: 40px;
+  width: 40px;
+}
+
+#BoisSpe {
+  position: absolute;
+  background-repeat: no-repeat;
+  background-image: url("Ressources/primary/wood.svg");
+  height: 40px;
+  width: 100%;
+  margin-top: 10px;
+}
+
+#PierreSpe {
+  position: absolute;
+  background-repeat: no-repeat;
+  background-image: url("Ressources/primary/stone.svg");
+  height: 40px;
+  width: 100%;
+  margin-top: 10px;
+}
+
+#NourritureSpe {
+  position: absolute;
+  background-repeat: no-repeat;
+  background-image: url("Ressources/primary/food.svg");
+  height: 40px;
+  width: 100%;
+  margin-top: 10px;
+}
+
+#OrSpe {
+  position: absolute;
+  background-repeat: no-repeat;
+  background-image: url("Ressources/industrialAge/Paquet_de_thunes.svg");
+  height: 40px;
+  width: 100%;
+  margin-top: 10px;
+}
+
+#Hache {
+  //position: absolute;
+  background-repeat: no-repeat;
+  background-image: url("Ressources/stoneAge/axe.svg");
+  height: 40px;
+  width: 100%;
+}
+
+#Pioche {
+  background-repeat: no-repeat;
+  background-image: url("Ressources/stoneAge/Pioche.svg");
+  height: 40px;
+  width: 100%;
+}
+
+#Lance {
+  background-repeat: no-repeat;
+  background-image: url("Ressources/stoneAge/Lance.svg");
+  height: 40px;
+  width: 100%;
+}
+
+#Cabane_en_bois {
+  background-repeat: no-repeat;
+  background-image: url("Ressources/stoneAge/caban.svg");
+  height: 40px;
+  width: 100%;
+}
+
+#Travail_du_fer {
+  background-repeat: no-repeat;
+  background-image: url("Ressources/stoneAge/Travaildufer.svg");
+  height: 40px;
+  width: 100%;
+}
+
+#Château {
+  background-repeat: no-repeat;
+  background-image: url("Ressources/middleAge/Chateau.svg");
+  height: 40px;
+  width: 100%;
+}
+
+#Mine {
+  background-repeat: no-repeat;
+  background-image: url("Ressources/stoneAge/Mine.svg");
+  height: 40px;
+  width: 100%;
+}
+
+#Camp_de_bûcheron {
+  background-repeat: no-repeat;
+  background-image: url("Ressources/stoneAge/Camp.svg");
+  height: 40px;
+  width: 100%;
+}
+
+#Elevage {
+  background-repeat: no-repeat;
+  background-image: url("Ressources/stoneAge/elevage.svg");
+  height: 40px;
+  width: 100%;
+}
+
+#Scies_à_main {
+  background-repeat: no-repeat;
+  background-image: url("Ressources/middleAge/Scie.svg");
+  height: 40px;
+  width: 100%;
+}
+
+#Pioches_en_métal {
+  background-repeat: no-repeat;
+  background-image: url("Ressources/middleAge/Pioche.svg");
+  height: 40px;
+  width: 100%;
+}
+
+#Arc {
+  background-repeat: no-repeat;
+  background-image: url("Ressources/middleAge/Arc.svg");
+  height: 40px;
+  width: 100%;
+}
+
+#Scierie {
+  background-repeat: no-repeat;
+  background-image: url("Ressources/middleAge/Scierie.svg");
+  height: 40px;
+  width: 100%;
+}
+
+#Armurerie {
+  background-repeat: no-repeat;
+  background-image: url("Ressources/stoneAge/caban2.svg");
+  height: 40px;
+  width: 100%;
+}
+
+#Boucherie {
+  background-repeat: no-repeat;
+  background-image: url("Ressources/middleAge/Boucherie.svg");
+  height: 40px;
+  width: 100%;
+}
+
+#Artisanat {
+  background-repeat: no-repeat;
+  background-image: url("Ressources/middleAge/artisanat.svg");
+  height: 40px;
+  width: 100%;
+}
+
+#Decouverte_de_l_acier {
+  background-repeat: no-repeat;
+  background-image: url("Ressources/middleAge/artisanat.svg");
+  height: 40px;
+  width: 100%;
+}
+
+#Monnaie {
+  background-repeat: no-repeat;
+  background-image: url("Ressources/industrialAge/Moyenne liasse de billets.svg");
+  height: 40px;
+  width: 100%;
+}
+
+#Immeuble {
+  background-repeat: no-repeat;
+  background-image: url("Ressources/industrialAge/Immeubles_1.svg");
+  height: 40px;
+  width: 100%;
+}
+
+#Publicité {
+  background-repeat: no-repeat;
+  //background-image: url("Ressources/industrialAge/Immeubles_2.svg");
+  height: 40px;
+  width: 100%;
+}
+
+#Internet {
+  background-repeat: no-repeat;
+  background-image: url("Ressources/industrialAge/internet.png");
+  height: 40px;
+  width: 100%;
+}
+
+#Balistique {
+  background-repeat: no-repeat;
+  //background-image: url("Ressources/industrialAge/Moyen satellite.svg");
+  height: 40px;
+  width: 100%;
+}
+
+#Programme_Spatial {
+  background-repeat: no-repeat;
+  background-image: url("Ressources/industrialAge/Moyen satellite.svg");
+  height: 40px;
+  width: 100%;
+}
+
+#Projet_Yggdrasil {
+  background-repeat: no-repeat;
+  background-image: url("Ressources/planet/planete2-3.svg");
+  height: 40px;
+  width: 100%;
+}
+
+#Tronçonneuse {
+  background-repeat: no-repeat;
+  background-image: url("Ressources/industrialAge/Tronçonneuse.svg");
+  height: 40px;
+  width: 100%;
+}
+
+#Foreuse {
+  background-repeat: no-repeat;
+  background-image: url("Ressources/industrialAge/Foreuse.svg");
+  height: 40px;
+  width: 100%;
+}
+
+#Fusil {
+  background-repeat: no-repeat;
+  background-image: url("Ressources/industrialAge/Fusil.png");
+  height: 40px;
+  width: 100%;
+}
+
+#Fonderie {
+  background-repeat: no-repeat;
+  background-image: url("Ressources/industrialAge/Fonderie.svg");
+  height: 40px;
+  width: 100%;
+}
+
+#Exploitation_forestière {
+  background-repeat: no-repeat;
+  background-image: url("Ressources/industrialAge/Exploitation_forestière.svg");
+  height: 40px;
+  width: 100%;
+}
+
+#Abattoir {
+  background-repeat: no-repeat;
+  background-image: url("Ressources/industrialAge/Abattoir.svg");
+  height: 40px;
+  width: 100%;
 }

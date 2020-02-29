@@ -8,13 +8,13 @@ const Stats = props => {
             flexDirection: "row",
             justifyContent: "space-evenly",
             alignItems: "center",
-            color: "black"
+            color: "#C0EDF0"
         } }, props.state.currentEra.resources.map(r => (React.createElement("span", null,
         prettifyNumber(BigNumber(props.state[r.name].hundredths).div(100)),
         " ",
         "(",
         prettifyNumber(BigNumber(props.state[r.name].perSecond).div(10)),
         "/s)",
-        React.createElement("div", { id: r.name }))))));
+        React.createElement("div", { id: r.name + 'Spe' }))))));
 };
 export default Stats;

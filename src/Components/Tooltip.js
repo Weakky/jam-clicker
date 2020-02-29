@@ -14,13 +14,13 @@ function Tooltip(props) {
 
 		if(b.owned > 1) {
 			details = (
-				<p>{b.owned} {b.plural} are producing a total of {prettifyNumber(BigNumber(b.baseNHPT).mult(b.owned).div(10))} nanites per second.</p>
+				<p>{b.owned} {b.plural} are producing a total of {prettifyNumber(BigNumber(b.baseNHPT).mult(b.owned).div(10))} ressource per second.</p>
 			);
 		}
 
 		return (
 			<div>
-				<p>Each {b.name} produces {prettifyNumber(BigNumber(b.baseNHPT).div(10))} nanites per second.</p>
+				<p>Each {b.plural} produces {prettifyNumber(BigNumber(b.baseNHPT).div(10))} ressource per second.</p>
 				{details}
 			</div>
 		);
@@ -28,7 +28,7 @@ function Tooltip(props) {
 
 	return (
 		<div id="tooltip" style={{top: props.tooltipTop}}>
-			<h4>{b.name}</h4>
+			<h4>{b.plural}</h4>
 			<p className="description">{b.description}</p>
 			{ownedDetails()}
 		</div>

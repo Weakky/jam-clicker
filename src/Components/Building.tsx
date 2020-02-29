@@ -69,19 +69,35 @@ const Building: React.FC<Props> = props => {
   // const overlay = canBuy ? null : <div className="overlay"></div>;
 
   return (
-    <div
-      id="building"
+    <div id={'test'}
       style={{
         cursor: canBuy ? "pointer" : "default",
-        backgroundColor: canBuy ? "black" : "rgba(255, 255, 255, 0.5)"
+          backgroundColor: canBuy ? "black" : "rgba(255, 255, 255, 0.5)",
+        border: '1px solid #999'
       }}
       onClick={canBuy ? () => props.buyBuilding(building.id) : () => null}
       onMouseMove={$event =>
         props.moveTooltip(building.id, $event.pageY - 50 + "px")
       }
     >
-      <h5 style={{ textAlign: "center" }}>{building.name}</h5>
-      <div style={{ textAlign: "center" }}>{building.owned}</div>
+      <div id={'dsp'}>{building.plural}
+        <div id={building.name} style={{ display: "inline-block", 'vertical-align': "middle", 'margin-right': '50px' }}/></div>
+
+      <div style={{ display: "inline-block", 'vertical-align': "middle", 'margin-right': '260px'}}>{building.owned}</div>
+        {
+            Object.entries(building.info)
+                .filter(([, value]) => value !== undefined && value.priceOfNext.val() !== '0')
+                .map(([resourceType, value]) => (
+                <div style={{ display: "inline-block", 'vertical-align': "middle", 'margin-right': '10px' }}>
+
+                    <div style={{ display: "inline-block", 'vertical-align': "middle" }}>
+                        {prettifyNumber(value!.priceOfNext)}
+                      <div id={resourceType}/>
+                    </div>
+
+                </div>
+            ))
+        }
       {/* <div style={{ textAlign: "center" }}>
         {prettifyNumber(building.priceOfNext)}
       </div> */}
