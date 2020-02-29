@@ -203,7 +203,8 @@ export const upgradesPerEras: UpgradesPerEras = {
       type: "tool",
       name: "Mine",
       plural: "Mine",
-      description: "Récolte de pierre automatisée",
+      description:
+        "Récolte de pierre automatisée - Nécessite une cabane en bois pour être débloqué",
       owned: 0,
       // resourceType: "Pierre",
       info: {
@@ -220,7 +221,8 @@ export const upgradesPerEras: UpgradesPerEras = {
       type: "tool",
       name: "Camp_de_bûcheron",
       plural: "Camp de bûcheron",
-      description: "Récolte de bois automatisée",
+      description:
+        "Récolte de bois automatisée  - Nécessite une cabane en bois pour être débloqué",
       owned: 0,
       // resourceType: "Bois",
       info: {
@@ -237,7 +239,8 @@ export const upgradesPerEras: UpgradesPerEras = {
       type: "tool",
       name: "Elevage",
       plural: "Elevage",
-      description: "Récolte de nourriture automatisée",
+      description:
+        "Récolte de nourriture automatisée  - Nécessite une cabane en bois pour être débloqué",
       owned: 0,
       // resourceType: "Nourriture",
       info: {
@@ -272,8 +275,7 @@ export const upgradesPerEras: UpgradesPerEras = {
       type: "tool",
       name: "Pioches_en_métal",
       plural: "Pioches en métal",
-      description:
-        "Outil permettant la récolte de métals plus rares",
+      description: "Outil permettant la récolte de métals plus rares",
       owned: 0,
       // resourceType: "Bois",
       info: {
@@ -296,8 +298,7 @@ export const upgradesPerEras: UpgradesPerEras = {
       type: "tool",
       name: "Arc",
       plural: "Arc",
-      description:
-        "Un arc rend la chase bien plus efficace",
+      description: "Un arc rend la chase bien plus efficace",
       owned: 0,
       info: {
         Bois: {
@@ -319,8 +320,7 @@ export const upgradesPerEras: UpgradesPerEras = {
       name: "Scierie",
       plural: "Scierie",
       type: "tool",
-      description:
-        "Production de bois automatisée",
+      description: "Production de bois automatisée",
       owned: 0,
       info: {
         Bois: {
@@ -336,8 +336,7 @@ export const upgradesPerEras: UpgradesPerEras = {
       name: "Armurerie",
       plural: "Armurerie",
       type: "tool",
-      description:
-        "Productions d'armes et armures automatisée",
+      description: "Productions d'armes et armures automatisée",
       owned: 0,
       info: {
         Pierre: {
@@ -353,8 +352,7 @@ export const upgradesPerEras: UpgradesPerEras = {
       name: "Boucherie",
       plural: "Boucherie",
       type: "tool",
-      description:
-        "Permet de générer de la nourriture plus efficacement",
+      description: "Permet de générer de la nourriture plus efficacement",
       owned: 0,
       info: {
         Nourriture: {
@@ -428,8 +426,7 @@ export const upgradesPerEras: UpgradesPerEras = {
       name: "Monnaie",
       plural: "Monnaie",
       type: "event",
-      description:
-        "L'argent est la fondation de toute société moderne",
+      description: "L'argent est la fondation de toute société moderne",
       owned: 0,
       info: {
         Bois: {
@@ -484,8 +481,7 @@ export const upgradesPerEras: UpgradesPerEras = {
       type: "event",
       name: "Publicité",
       plural: "Publicité",
-      description:
-        "Le capitalisme se dévelloppe",
+      description: "Le capitalisme se dévelloppe",
       owned: 0,
       // resourceType: "Bois",
       info: {
@@ -534,8 +530,7 @@ export const upgradesPerEras: UpgradesPerEras = {
       type: "event",
       name: "Balistique",
       plural: "Balistiqe",
-      description:
-        "Les armes deviennent bien plus meurtirères",
+      description: "Les armes deviennent bien plus meurtirères",
       owned: 0,
       // resourceType: "Bois",
       info: {
@@ -559,8 +554,7 @@ export const upgradesPerEras: UpgradesPerEras = {
       type: "event",
       name: "Programme_Spatial",
       plural: "Programme Spatial",
-      description:
-        "L'Homme se tourne vers l'espace",
+      description: "L'Homme se tourne vers l'espace",
       owned: 0,
       // resourceType: "Bois",
       info: {
@@ -584,8 +578,7 @@ export const upgradesPerEras: UpgradesPerEras = {
       type: "event",
       name: "Projet_Yggdrasil",
       plural: "Projet Ygggrasil",
-      description:
-        "Il est temps de fuir ce monde rongé par la pollution",
+      description: "Il est temps de fuir ce monde rongé par la pollution",
       owned: 0,
       // resourceType: "Bois",
       info: {
@@ -610,8 +603,7 @@ export const upgradesPerEras: UpgradesPerEras = {
       type: "tool",
       name: "Tronçonneuse",
       plural: "Tronçonneuse",
-      description:
-        "Couper des arbres est désormais un jeu d'enfant",
+      description: "Couper des arbres est désormais un jeu d'enfant",
       owned: 0,
       // resourceType: "Bois",
       info: {
@@ -646,8 +638,7 @@ export const upgradesPerEras: UpgradesPerEras = {
       type: "tool",
       name: "Fusil",
       plural: "Fusil",
-      description:
-        "'give me AK my friend' - Joueur Russe de Csgo",
+      description: "'give me AK my friend' - Joueur Russe de Csgo",
       owned: 0,
       // resourceType: "Bois",
       info: {
@@ -664,8 +655,7 @@ export const upgradesPerEras: UpgradesPerEras = {
       type: "tool",
       name: "Fonderie",
       plural: "Fonderie",
-      description:
-        "Les alliages sont créés à la pelle",
+      description: "Les alliages sont créés à la pelle",
       owned: 0,
       // resourceType: "Bois",
       info: {
@@ -682,8 +672,7 @@ export const upgradesPerEras: UpgradesPerEras = {
       type: "tool",
       name: "Exploitation_forestière",
       plural: "Exploitation forestière",
-      description:
-        "Amazonie ? Connais pas",
+      description: "Amazonie ? Connais pas",
       owned: 0,
       // resourceType: "Bois",
       info: {

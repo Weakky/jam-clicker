@@ -15,11 +15,15 @@ class Game extends Component {
         window.setInterval(() => props.saveGame(), 60000);
     }
     displayNaniteValue() {
-        const resource = this.props.state.currentEra.resources[0].name;
+        const resource = this.props.state.currentEra.resources[0]
+            .name;
         const wholeNanites = BigNumber(this.props.state[resource].hundredths).div(100);
         return prettifyNumber(wholeNanites, true);
     }
     render() {
+        if (this.props.state.done) {
+            return (React.createElement("iframe", { width: "1920", height: "1080", src: "https://www.youtube.com/embed/6NWRSq3bIhE?start=79&autoplay=1&controls=0", frameBorder: "0", allow: "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture", allowFullScreen: true }));
+        }
         let tooltipBuilding = this.props.buildings.find(b => b.id === this.props.tooltipBuilding);
         if (!tooltipBuilding) {
             tooltipBuilding = this.props.buildings[0];
@@ -61,7 +65,7 @@ class Game extends Component {
                 } },
                 React.createElement("div", { id: "backPlanet" },
                     React.createElement("div", { id: "banner" },
-                        React.createElement("h2", { style: { margin: '0 auto auto auto' } },
+                        React.createElement("h2", { style: { margin: "0 auto auto auto" } },
                             this.displayNaniteValue(),
                             " ",
                             this.props.state.currentEra.name === "Age de Pierre" ||

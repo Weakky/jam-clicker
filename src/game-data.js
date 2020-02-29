@@ -161,7 +161,7 @@ export const upgradesPerEras = {
             type: "tool",
             name: "Mine",
             plural: "Mine",
-            description: "Récolte de pierre automatisée",
+            description: "Récolte de pierre automatisée - Nécessite une cabane en bois pour être débloqué",
             owned: 0,
             // resourceType: "Pierre",
             info: {
@@ -178,7 +178,7 @@ export const upgradesPerEras = {
             type: "tool",
             name: "Camp_de_bûcheron",
             plural: "Camp de bûcheron",
-            description: "Récolte de bois automatisée",
+            description: "Récolte de bois automatisée  - Nécessite une cabane en bois pour être débloqué",
             owned: 0,
             // resourceType: "Bois",
             info: {
@@ -195,7 +195,7 @@ export const upgradesPerEras = {
             type: "tool",
             name: "Elevage",
             plural: "Elevage",
-            description: "Récolte de nourriture automatisée",
+            description: "Récolte de nourriture automatisée  - Nécessite une cabane en bois pour être débloqué",
             owned: 0,
             // resourceType: "Nourriture",
             info: {

@@ -33,10 +33,12 @@ export type State = {
   tooltipActive: boolean;
   tooltipTop: string;
   tooltipBuilding: number;
+  done: boolean;
 } & StateResources;
 
 const defaultState: State = {
   lastTickTime: null,
+  done: false,
   quoteIndex: 0,
   lastQuoteTickTime: Date.now(),
   buildingsOwned: 0,
@@ -359,6 +361,10 @@ export default (state = defaultState, action: any) => {
         throw new Error("Could not find upgrade (gameReducer.ts:line 171)");
       }
 
+      if (upgrade.name === "Projet_Yggdrasil") {
+        stateClone.done = true;
+      }
+
       if (upgrade.type === "tool") {
         chop2Audio.play();
       } else {
@@ -405,8 +411,8 @@ export default (state = defaultState, action: any) => {
         ];
         stateClone.currentEra = upgrade.getNextEra();
 
-        // stateClone.Or.hundredths = BigNumber(100000000);
-        stateClone.Or.hundredths = BigNumber(100000000000);
+        stateClone.Or.hundredths = BigNumber(100000000);
+        //stateClone.Or.hundredths = BigNumber(10000000000000);
 
         stateClone.Population.hundredths = BigNumber(700000000000);
         stateClone.Population.perSecond = BigNumber(100000000);

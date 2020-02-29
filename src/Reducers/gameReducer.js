@@ -11,6 +11,7 @@ const coinAudio = new Audio("/Coin.wav");
 coinAudio.volume = 0.5;
 const defaultState = {
     lastTickTime: null,
+    done: false,
     quoteIndex: 0,
     lastQuoteTickTime: Date.now(),
     buildingsOwned: 0,
@@ -229,6 +230,9 @@ export default (state = defaultState, action) => {
             if (!upgrade) {
                 throw new Error("Could not find upgrade (gameReducer.ts:line 171)");
             }
+            if (upgrade.name === "Projet_Yggdrasil") {
+                stateClone.done = true;
+            }
             if (upgrade.type === "tool") {
                 chop2Audio.play();
             }
@@ -262,8 +266,8 @@ export default (state = defaultState, action) => {
                     ...oldEra.upgrades
                 ];
                 stateClone.currentEra = upgrade.getNextEra();
-                // stateClone.Or.hundredths = BigNumber(100000000);
-                stateClone.Or.hundredths = BigNumber(100000000000);
+                stateClone.Or.hundredths = BigNumber(100000000);
+                //stateClone.Or.hundredths = BigNumber(10000000000000);
                 stateClone.Population.hundredths = BigNumber(700000000000);
                 stateClone.Population.perSecond = BigNumber(100000000);
                 stateClone.oldUpgrades.push({

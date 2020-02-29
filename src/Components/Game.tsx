@@ -29,7 +29,8 @@ class Game extends Component<Props> {
   }
 
   displayNaniteValue() {
-    const resource = this.props.state.currentEra.resources[0].name as ResourceTypes;
+    const resource = this.props.state.currentEra.resources[0]
+      .name as ResourceTypes;
 
     const wholeNanites = BigNumber(this.props.state[resource].hundredths).div(
       100
@@ -38,6 +39,19 @@ class Game extends Component<Props> {
   }
 
   render() {
+    if (this.props.state.done) {
+      return (
+        <iframe
+          width="1920"
+          height="1080"
+          src="https://www.youtube.com/embed/6NWRSq3bIhE?start=79&autoplay=1&controls=0"
+          frameBorder="0"
+          allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen={true}
+        ></iframe>
+      );
+    }
+
     let tooltipBuilding = this.props.buildings.find(
       b => b.id === this.props.tooltipBuilding
     );
@@ -112,7 +126,7 @@ class Game extends Component<Props> {
         >
           <div id={"backPlanet"}>
             <div id="banner">
-              <h2 style={{margin: '0 auto auto auto'}}>
+              <h2 style={{ margin: "0 auto auto auto" }}>
                 {this.displayNaniteValue()}{" "}
                 {this.props.state.currentEra.name === "Age de Pierre" ||
                 this.props.state.currentEra.name === "Moyen-Âge"
@@ -127,8 +141,8 @@ class Game extends Component<Props> {
             <div
               id={this.props.state.currentEra.earthImagePath}
               style={{ margin: "50px auto 0" }}
-              onClick={() => this.props.addNanites(100)}>
-            </div>
+              onClick={() => this.props.addNanites(100)}
+            ></div>
           </div>
           <div
             style={{
